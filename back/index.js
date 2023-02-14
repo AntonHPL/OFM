@@ -16,10 +16,13 @@ const regionsRoutes = require("./routes/routes/regions");
 const usersRoutes = require("./routes/routes/users");
 
 const app = express();
-const wss = new WebSocket.Server({ port: process.env.WS_PORT });
+app.set("port", (process.env.PORT || 3001));
+const server = require("http").createServer(app);
+
+const wss = new WebSocket.Server({ server: server });
 const webSocketMessage = chalk.bold.bgBlue;
 
-app.set("port", (process.env.PORT || 3001));
+
 
 app.use(cors());
 app.use(express.json(), express.urlencoded({ extended: false }));
@@ -72,6 +75,6 @@ if (process.env.NODE_ENV === "production") {
 };
 
 const serverPort = app.get("port");
-app.listen(serverPort, error =>
+server.listen(serverPort, error =>
     console.log(error ? `The Error occured: ${error.message}.` : `The Listening Port is ${serverPort}`)
 );

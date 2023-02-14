@@ -20,7 +20,7 @@ const Chats: FC = () => {
 	const { user } = useContext(UserContext);
 
 	useEffect(() => {
-		const ws = new WebSocket("ws://localhost:3002");
+		const ws = new WebSocket("ws://localhost:3001");
 		const textReceived = localStorage.getItem("message-text");
 		ws.onopen = () => console.log("Connected to the WS Server.");
 		ws.onmessage = message => setNewMessage(JSON.parse(message.data));
