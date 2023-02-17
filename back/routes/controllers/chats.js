@@ -1,4 +1,5 @@
 const Chat = require("../../models/chat");
+const { pusher } = require("../../pusher");
 
 const postChat = (req, res) => {
   new Chat({
@@ -49,6 +50,15 @@ const deleteChat = (req, res) => {
     .catch(error => console.log(error))
 };
 
+const sendMessage = async (req, res) => {
+  await pusher.trigger("chat-channel", "msg", {
+    senderId: req.body.senderId,
+    message: req.body.message
+  });
+  console.log(req.body)
+  res.json([]);
+}
+
 module.exports = {
   postChat,
   getChats,
@@ -56,4 +66,5 @@ module.exports = {
   determineChatExistence,
   deleteChat,
   getChat,
+  sendMessage,
 };

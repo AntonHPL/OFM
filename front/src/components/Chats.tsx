@@ -5,6 +5,7 @@ import Interlocutors from "./Interlocutors";
 import { UserContext } from "./UserContext";
 import axios from "axios";
 import { MessageInterface, ModifiedChatInterface } from "../types";
+import Pusher from "pusher-js";
 
 const Chats: FC = () => {
 	const [oldMessages, setOldMessages] = useState<Array<MessageInterface> | null>(null);
@@ -20,16 +21,23 @@ const Chats: FC = () => {
 	const { user } = useContext(UserContext);
 
 	useEffect(() => {
-		const ws = new WebSocket("ws://localhost:3001");
+		// const ws = new WebSocket("ws://localhost:3001");
 		const textReceived = localStorage.getItem("message-text");
-		ws.onopen = () => console.log("Connected to the WS Server.");
-		ws.onmessage = message => setNewMessage(JSON.parse(message.data));
-		setWebSocket(ws);
+		// ws.onopen = () => console.log("Connected to the WS Server.");
+		// ws.onmessage = message => setNewMessage(JSON.parse(message.data));
+
+		const pusher = new Pusher('aa5fa40f514180632721', { cluster: 'eu' });
+
+		const channel = pusher.subscribe("chat-channel");
+
+		channel.bind("msg", (data: MessageInterface) => setNewMessage(data));
+
+		// setWebSocket(ws);
 		textReceived && setMessageText(textReceived);
 		return () => {
 			localStorage.getItem("ad-id_selected") && localStorage.removeItem("ad-id_selected");
 			textReceived && localStorage.removeItem("message-text");
-			ws.close();
+			pusher.unsubscribe("chat-channel");
 		};
 	}, []);
 
@@ -39,7 +47,10 @@ const Chats: FC = () => {
 
 	const send = (e: FormEvent): void => {
 		e.preventDefault();
-		webSocket && webSocket.send(JSON.stringify({ senderId: myId, message: messageText }));
+		// webSocket && webSocket.send(JSON.stringify({ senderId: myId, message: messageText }));
+		// setNewMessage({ senderId: myId, message: messageText })
+		const messageToSend = { senderId: myId, message: messageText };
+		axios.post("/api/message", messageToSend);
 		setMessageText("");
 	};
 
