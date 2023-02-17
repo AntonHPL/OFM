@@ -182,7 +182,7 @@ const Interlocutors: FC<InterlocutorsPropsInterface> = ({
 										</Typography>
 										<>
 											{messageFound ? (
-												messageFound.message.senderId === myId ? `You: ${messageFound.message.message}` : messageFound.message
+												messageFound.message.senderId === myId ? `You: ${messageFound.message.message}` : messageFound.message.message
 											) : (
 												lastMessage.senderId === myId ? `You: ${lastMessage.message}` : lastMessage.message
 											)}
