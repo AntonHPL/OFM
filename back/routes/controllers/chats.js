@@ -50,13 +50,12 @@ const deleteChat = (req, res) => {
     .catch(error => console.log(error))
 };
 
-const sendMessage = async (req, res) => {
-  await pusher.trigger("chat-channel", "msg", {
+const sendMessage = (req, res) => {
+  pusher.trigger("chat-channel", "msg", {
     senderId: req.body.senderId,
     message: req.body.message
-  });
-  console.log(req.body)
-  res.json([]);
+  })
+    .then(() => res.json(true));
 }
 
 module.exports = {
