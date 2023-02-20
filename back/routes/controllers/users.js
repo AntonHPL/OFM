@@ -86,10 +86,17 @@ const signUp = (req, res) => {
     `
   };
 
-  transporter.sendMail(mailOptions, (error, info) => {
-    error ? console.error(error) :
-      console.log(`Verification email was sent to ${user.email}`)
-  })
+  new Promise((resolve, reject) => {
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error(error);
+        reject(error);
+      } else {
+        console.log(`Verification email was sent to ${user.email}`);
+        resolve(info)
+      }
+    })
+  });
 };
 
 const verifyEmail = (req, res) => {
