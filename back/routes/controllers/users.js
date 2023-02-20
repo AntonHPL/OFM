@@ -26,7 +26,7 @@ const getAccountImage = (req, res) => {
     .then(image => res.json(image));
 };
 
-const signUp = (req, res) => {
+const signUp = async (req, res) => {
   const { name, email, password } = req.body;
   const user = new User({
     name,
@@ -86,7 +86,7 @@ const signUp = (req, res) => {
     `
   };
 
-  new Promise((resolve, reject) => {
+  await new Promise((resolve, reject) => {
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         console.error(error);
