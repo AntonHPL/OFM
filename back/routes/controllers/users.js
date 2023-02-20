@@ -1,7 +1,7 @@
 const fs = require("fs");
 const User = require("../../models/user");
 const bcrypt = require("bcrypt");
-const crypto = require("crypto"); 
+const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 
@@ -55,12 +55,19 @@ const signUp = (req, res) => {
 
   const transporter = nodemailer.createTransport({
     // service: "gmail",
-    host: 'smtp.mail.ru',
+    // host: 'smtp.mail.ru',
+    // port: 465,
+    // secure: true,
+    // auth: {
+    //   user: "antonhpl@mail.ru",
+    //   pass: "3AuUMoTLYuR7Gwjv9SHQ",
+    // },
+    host: 'smtp.gmail.com',
     port: 465,
     secure: true,
     auth: {
-      user: "antonhpl@mail.ru",
-      pass: "3AuUMoTLYuR7Gwjv9SHQ",
+      user: "antosha.dashko@gmail.com",
+      pass: "axvqagcxlocnwedx",
     },
     // tls: {
     //   rejectUnauthorized: false,
@@ -68,14 +75,14 @@ const signUp = (req, res) => {
   });
 
   const mailOptions = {
-    from: "Flea Market <antonhpl@mail.ru>",
+    from: "OFM",
     to: user.email,
-    subject: "Please verify your email address on Flea Market.",
+    subject: "Please verify your email address on OFM.",
     html: `
       <h4>Dear ${user.name}!</h4>
-      <p>Thank you for joining Flea Market team!</p>
+      <p>Thank you for joining OFM!</p>
       <p>Please cerify your email address by clicking the link below:</p>
-      <a href = "http://https://online-farmers-market.herokuapp.com/api/verify-email?token=${user.emailToken}">Verify the Email</a>
+      <a href = "https://ofm-api.vercel.app/api/verify-email?token=${user.emailToken}">Verify the Email</a>
     `
   };
 
