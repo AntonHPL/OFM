@@ -43,25 +43,18 @@ const signUp = async (req, res) => {
     .then(hash => {
       user.password = hash
     })
-    .then(() => {
-      return user.save()
-    })
+    .then(() => user.save())
+    .then(() => sendMail(user))
     .then(() => res.json("Ok"))
     .catch(error => {
       error.name === "MongoServerError" ?
         res.status(422).send("The Email is already registered.") :
         console.error(error)
     });
+};
 
+const sendMail = user => {
   const transporter = nodemailer.createTransport({
-    // service: "gmail",
-    // host: 'smtp.mail.ru',
-    // port: 465,
-    // secure: true,
-    // auth: {
-    //   user: "antonhpl@mail.ru",
-    //   pass: "3AuUMoTLYuR7Gwjv9SHQ",
-    // },
     host: 'smtp.gmail.com',
     port: 465,
     secure: true,
@@ -69,13 +62,10 @@ const signUp = async (req, res) => {
       user: "antosha.dashko@gmail.com",
       pass: "axvqagcxlocnwedx",
     },
-    // tls: {
-    //   rejectUnauthorized: false,
-    // }
   });
 
   const mailOptions = {
-    from: "OFM",
+    from: "antosha.dashko@gmail.com",
     to: user.email,
     subject: "Please verify your email address on OFM.",
     html: `
@@ -86,7 +76,7 @@ const signUp = async (req, res) => {
     `
   };
 
-  await new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         console.error(error);
@@ -97,7 +87,7 @@ const signUp = async (req, res) => {
       }
     })
   });
-};
+}
 
 const verifyEmail = (req, res) => {
   const token = req.query.token;
