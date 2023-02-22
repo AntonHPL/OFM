@@ -2,7 +2,6 @@
   @include flex-options($justify_content: space-between);
   @include indents($padding: 16px 24px 16px 8px);
   min-height: calc(100vh - 64px);
-  background-color: $secondary_bright;
   @include border-box();
 
   .main {
@@ -36,8 +35,7 @@
       .ads-amount {
         @include size(120px);
         @include flex_center();
-        @include border($primary-dark, 4px);
-        background: $primary-dark;
+        border-radius: 4px;
         color: #fff;
         @include border_box();
       }

@@ -4,6 +4,8 @@ import { FirstMessageDialogPropsInterface } from '../types';
 import axios from 'axios';
 import { UserContext } from './UserContext';
 import { AccountCircle } from '@mui/icons-material';
+import { useTranslation } from 'react-i18next';
+import '../i18n';
 
 const FirstMessageDialog: FC<FirstMessageDialogPropsInterface> = ({
   open,
@@ -14,6 +16,7 @@ const FirstMessageDialog: FC<FirstMessageDialogPropsInterface> = ({
   paramsId,
   ad
 }) => {
+  const { t }: { t: (value: string) => string } = useTranslation();
   const { user } = useContext(UserContext);
   const sendMessage = () => {
     const creationDate = new Date().toISOString();
@@ -64,7 +67,7 @@ const FirstMessageDialog: FC<FirstMessageDialogPropsInterface> = ({
             variant="outlined"
             value={messageText}
             autoComplete="off"
-            placeholder="Enter your Message"
+            placeholder={t("firstMessageDialog.enterYourMessage")}
             onChange={e => setMessageText(e.target.value)}
             // className="form_row"
             multiline
@@ -74,12 +77,12 @@ const FirstMessageDialog: FC<FirstMessageDialogPropsInterface> = ({
       </DialogContent>
       <DialogActions>
         <Button onClick={closeDialog}>
-          Quit
+          {t("firstMessageDialog.quit")}
         </Button>
         <Button
           disabled={!messageText}
           onClick={sendMessage}>
-          Send
+          {t("firstMessageDialog.send")}
         </Button>
       </DialogActions>
     </Dialog>

@@ -6,12 +6,15 @@ import { UserContext } from "./UserContext";
 import axios from "axios";
 import { MessageInterface, ModifiedChatInterface } from "../types";
 import Pusher from "pusher-js";
+import { useTranslation } from 'react-i18next';
+import '../i18n';
 
 const Chats: FC = () => {
+	const { t }: { t: (value: string) => string } = useTranslation();
 	const [oldMessages, setOldMessages] = useState<Array<MessageInterface> | null>(null);
 	const [newMessage, setNewMessage] = useState<MessageInterface | null>(null);
 	const [allMessages, setAllMessages] = useState<Array<MessageInterface>>([]);
-	const [webSocket, setWebSocket] = useState<WebSocket | null>(null);
+	// const [webSocket, setWebSocket] = useState<WebSocket | null>(null);
 	const [messageText, setMessageText] = useState("");
 	const [chatId, setChatId] = useState<string>("");
 	const [chats, setChats] = useState<Array<ModifiedChatInterface> | null>(null);
@@ -75,7 +78,7 @@ const Chats: FC = () => {
 			for (let i = 0; i < arr.length; i++) {
 				const currentDate = new Date(arr[i].creationDate || "");
 				const elementWithBreak = {
-					...arr[i], break: currentDate.toLocaleDateString("en-US", {
+					...arr[i], break: currentDate.toLocaleDateString(t("chats.locales"), {
 						day: "numeric",
 						month: "long",
 					})
@@ -101,10 +104,11 @@ const Chats: FC = () => {
 
 	const backdrop = (): ReactElement => (
 		<Backdrop
+			sx={{ backgroundColor: "secondary.main" }}
 			className="backdrop"
 			open={true}
 		>
-			<CircularProgress />
+			<CircularProgress sx={{ color: "primary.dark", border: "1px solid primary.dark" }} />
 		</Backdrop>
 	);
 
@@ -125,7 +129,7 @@ const Chats: FC = () => {
 				/>
 				{!loading && chats ? (
 					chats?.length ?
-						<div className="chat-and-form">
+						<Paper className="chat-and-form" sx={{ border: "1px solid secondary.dark" }}>
 							{isChatChosen ?
 								<>
 									<div className="chat">
@@ -134,18 +138,19 @@ const Chats: FC = () => {
 												<>
 													{el.break &&
 														<div className="break">
-															<Paper>
+															<Paper sx={{ backgroundColor: "secondary.light" }}>
 																{el.break}
 															</Paper>
 														</div>
 													}
 													<Paper
 														className={el.senderId === myId ? "sent-message" : "received-message"}
+														sx={el.senderId === myId ? { backgroundColor: "primary.dark" } : {}}
 													>
 														{el.message}
 														<div>
 															{el.creationDate && new Date(el.creationDate)
-																.toLocaleTimeString("en-US", {
+																.toLocaleTimeString(t("chats.locales"), {
 																	hour: "numeric",
 																	minute: "numeric"
 																})
@@ -165,7 +170,7 @@ const Chats: FC = () => {
 											variant="outlined"
 											value={messageText}
 											autoComplete="off"
-											placeholder="Enter your Message"
+											placeholder={t("chats.enterYourMessage")}
 											onChange={e => setMessageText(e.target.value)}
 											className="form-row"
 										/>
@@ -179,20 +184,20 @@ const Chats: FC = () => {
 									<div>
 										<Chat />
 										<Typography variant="h5">
-											Choose the Chat...
+											{t("chats.chooseTheChat")}
 										</Typography>
 									</div>
 								</div>
 							}
-						</div> :
-						<div className="no-chats-plug">
+						</Paper> :
+						<Paper className="no-chats-plug" sx={{ border: "1px solid secondary.dark" }}>
 							<div>
 								<Block />
 								<Typography variant="h5">
-									No Chats...
+									{t("chats.noChats")}
 								</Typography>
 							</div>
-						</div>
+						</Paper>
 				) :
 					backdrop()
 				}

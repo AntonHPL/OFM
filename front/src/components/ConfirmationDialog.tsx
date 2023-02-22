@@ -8,8 +8,11 @@ import {
   DialogContentText
 } from "@mui/material";
 import { ConfirmationDialogPropsInterface } from "../types";
+import { useTranslation } from 'react-i18next';
+import '../i18n';
 
 const ConfirmationDialog: FC<ConfirmationDialogPropsInterface> = ({ open, closeDialog, changingAccountImage, setChangingAccountImage }) => {
+  const { t } = useTranslation();
   return (
     <Dialog
       open={open}
@@ -19,22 +22,22 @@ const ConfirmationDialog: FC<ConfirmationDialogPropsInterface> = ({ open, closeD
       className="confirmation-dialog"
     >
       <DialogTitle>
-        Please confirm the Action.
+        {t("confirmationDialog.pleaseConfirmTheAction")}
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-slide-description">
-          Do you want to set this Image as your Profile Picture?
+          {t("confirmationDialog.doYouWantToSetThisImageAsYourProfilePicture")}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button onClick={closeDialog}>
-          No
+          {t("confirmationDialog.no")}
         </Button>
         <Button onClick={() => {
           setChangingAccountImage(!changingAccountImage);
           closeDialog();
         }}>
-          Yes
+          {t("confirmationDialog.yes")}
         </Button>
       </DialogActions>
     </Dialog>

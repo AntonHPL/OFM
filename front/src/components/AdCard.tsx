@@ -11,8 +11,11 @@ import {
 import { NoPhotography } from "@mui/icons-material";
 import { AdCardPropsInterface } from "../types";
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import '../i18n';
 
 const AdCard: FC<AdCardPropsInterface> = ({ ad }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const renderParticularAd = (id: string): void => {
     navigate(`/ad/${id}`)
@@ -21,6 +24,7 @@ const AdCard: FC<AdCardPropsInterface> = ({ ad }) => {
   return (
     <Card className="ad-card-container">
       <CardActionArea
+        sx={{ backgroundColor: "primary.light" }}
         className="card-action-area"
         onClick={() => renderParticularAd(ad._id)}
       >
@@ -50,13 +54,13 @@ const AdCard: FC<AdCardPropsInterface> = ({ ad }) => {
             variant="h6"
             component="div"
           >
-            {ad.textInfo.price ? `$${ad.textInfo.price}` : "For free"}
+            {ad.textInfo.price ? `$${ad.textInfo.price}` : t("adCard.forFree")}
           </Typography>
         </>
         <Typography variant="body2">
           {ad.textInfo.category}, {ad.textInfo.subCategory}
           <br />
-          By {ad.textInfo.sellerName} from {ad.textInfo.region}, {ad.textInfo.city}
+          {t("adCard.by")} {ad.textInfo.sellerName} {t("adCard.from")} {ad.textInfo.region}, {ad.textInfo.city}
         </Typography>
       </CardContent>
       <CardActions className="card-actions">
@@ -64,7 +68,7 @@ const AdCard: FC<AdCardPropsInterface> = ({ ad }) => {
           onClick={() => renderParticularAd(ad._id)}
           size="large"
         >
-          Learn more...
+          {t("adCard.learnMore")}
         </Button>
       </CardActions>
     </Card>

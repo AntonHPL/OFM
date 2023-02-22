@@ -4,6 +4,8 @@ import { IconButton, Paper, Skeleton, Typography } from "@mui/material";
 import { AccountCircle, Delete, NoPhotography } from "@mui/icons-material";
 import { BriefAdInterface, ChatDeletionDialogInterface, ChatInterface, InterlocutorsPropsInterface, LastMessageInterface, ModifiedChatInterface, SellerInterface } from '../types';
 import ChatDeletionDialog from "./ChatDeletionDialog";
+import { useTranslation } from 'react-i18next';
+import '../i18n';
 
 const Interlocutors: FC<InterlocutorsPropsInterface> = ({
 	myId,
@@ -17,6 +19,7 @@ const Interlocutors: FC<InterlocutorsPropsInterface> = ({
 	setIsChatChosen,
 	setLoading,
 }) => {
+	const { t } = useTranslation();
 	const [chatsData, setChatsData] = useState<Array<ChatInterface> | null>(null);
 	const [dialog, setDialog] = useState<ChatDeletionDialogInterface>({ open: false, chatId: "" });
 	const [lastMessages, setLastMessages] = useState<Array<LastMessageInterface>>([]);
@@ -155,22 +158,23 @@ const Interlocutors: FC<InterlocutorsPropsInterface> = ({
 							return (
 								<Paper
 									className={`interlocutor ${chatId === chat._id ? "selected" : ""}`}
+									sx={chatId === chat._id ? { backgroundColor: "primary.light" } : {}}
 									onClick={() => revealHistory(chat.adId)}
 								>
 									<div className="images">
 										{chat.adImage ?
-											<div className="ad-image">
+											<Paper className="ad-image" sx={{ border: "1px solid primary.light" }}>
 												<img src={`data:image/png;base64,${chat.adImage}`} />
-											</div> :
+											</Paper> :
 											<NoPhotography className="no-photography" />
 										}
 										{chat.sellerImage ?
-											<div className="seller-image">
+											<Paper className="seller-image" sx={{ border: "1px solid primary.light" }}>
 												<img src={`data:image/png;base64,${chat.sellerImage}`} />
-											</div> :
-											<div className="account-circle-container">
+											</Paper> :
+											<Paper className="account-circle-container" sx={{ border: "1px solid primary.main" }}>
 												<AccountCircle viewBox="2 2 20 20" className="account-circle" />
-											</div>
+											</Paper>
 										}
 									</div>
 									<div className="sender-info">
@@ -178,13 +182,13 @@ const Interlocutors: FC<InterlocutorsPropsInterface> = ({
 											{chat.myInterlocutor?.name}
 										</Typography>
 										<Typography variant="h6">
-											{chat.adTitle || "(Deleted Ad.)"}
+											{chat.adTitle || t("interlocutors.deletedAd")}
 										</Typography>
 										<>
 											{messageFound ? (
-												messageFound.message.senderId === myId ? `You: ${messageFound.message.message}` : messageFound.message.message
+												messageFound.message.senderId === myId ? `${t("interlocutors.you")} ${messageFound.message.message}` : messageFound.message.message
 											) : (
-												lastMessage.senderId === myId ? `You: ${lastMessage.message}` : lastMessage.message
+												lastMessage.senderId === myId ? `${t("interlocutors.you")} ${lastMessage.message}` : lastMessage.message
 											)}
 										</>
 									</div>

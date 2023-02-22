@@ -2,8 +2,11 @@ import { FC } from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button } from "@mui/material";
 import { ChatDeletionDialogPropsInterface } from '../types';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
+import '../i18n';
 
 const ChatDeletionDialog: FC<ChatDeletionDialogPropsInterface> = ({ dialog, closeDialog, getChatsData }) => {
+  const { t } = useTranslation();
   return (
     <Dialog
       open={dialog.open}
@@ -13,16 +16,16 @@ const ChatDeletionDialog: FC<ChatDeletionDialogPropsInterface> = ({ dialog, clos
       className="chat-deletion-dialog"
     >
       <DialogTitle>
-        Are you sure you want to delete this Dialog?
+        {t("chatDeletionDialog.areYouSureYouWantToDeleteThisDialog")}
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-slide-description">
-          Please keep in mind that the Dialog will be deleted for your Interlocutor as well.
+          {t("chatDeletionDialog.pleaseKeepInMindThatTheDialogWillBeDeletedForYourInterlocutorAsWell")}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button onClick={closeDialog}>
-          Cancel
+          {t("chatDeletionDialog.cancel")}
         </Button>
         <Button onClick={() => {
           axios
@@ -36,7 +39,7 @@ const ChatDeletionDialog: FC<ChatDeletionDialogPropsInterface> = ({ dialog, clos
               console.error("The error occured: ", error.message);
             })
         }}>
-          OK
+          {t("chatDeletionDialog.ok")}
         </Button>
       </DialogActions>
     </Dialog>

@@ -13,21 +13,21 @@ a {
 }
 
 ::-webkit-scrollbar-track {
-  background: $secondary_main;
+  // background: $secondary_main;
   border-radius: 4px;
   padding-right: 20px;
 }
 
 ::-webkit-scrollbar-thumb {
   height: 5px;
-  background: $secondary_dark;
+  // background: $secondary_dark;
   border-radius: 4px;
 
   &:hover {
-    background: $primary_bright;
+    // background: $primary_bright;
   }
 
   &:active {
-    background: $primary_main;
+    // background: $primary_main;
   }
 }

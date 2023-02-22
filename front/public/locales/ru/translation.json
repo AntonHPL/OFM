@@ -1,0 +1,163 @@
+{
+  "accountDialog": {
+    "logIn": "Войти",
+    "createAnAccount": "Создать аккаунт"
+  },
+  "ad": {
+    "writeToTheSeller": "Написать продавцу",
+    "forFree": "Бесплатно",
+    "locatedIn": "Располагается в",
+    "createdOn": "Создано",
+    "locales": "ru-RU",
+    "aboutSeller": "О продавце",
+    "onOnlineFarmersMarketSince": "На Фермерском онлайн-рынке: с",
+    "thatIsYourAdYouCan": "Это Ваше объявление. Вы можете",
+    "deleteIt": "удалить его",
+    "anyTime": "в любой момент.",
+    "description": "Описание",
+    "interested": "Заинтересованы?",
+    "askTheSellerOneOfTheQuestionsProposed": "Задайте продавцу один из предложенных вопрсов...",
+    "orWriteYourOwn": "...или напишите собственный...",
+    "notSoldYet": "Еще не продали?",
+    "howToPickUpTheGoods": "Как забрать товары?",
+    "isThePriceNegotiable": "Торг уместен?"
+  },
+  "adCard": {
+    "forFree": "Бесплатно",
+    "by": "От",
+    "from": "из",
+    "learnMore": "Подробнее..."
+  },
+  "ads": {
+    "priceLowestFirst": "Цена: сначала низкая",
+    "priceHighestFirst": "Цена: сначала высокая",
+    "dateNeswestFirst": "Дата: сначала новое",
+    "dateOldestFirst": "Дата: сначала старое",
+    "sorting": "Сортировка",
+    "search": "Поиск...",
+    "ad": "объявление",
+    "ads": "объявлений",
+    "found": "найдено",
+    "nothingWasFoundTryToChangeTheSearchCriteria": "Ничего не было найдено. Попробуйте поменять параметры поиска."
+  },
+  "captcha": {
+    "enterTheCaptcha": "Введите капчу..."
+  },
+  "chatDeletionDialog": {
+    "areYouSureYouWantToDeleteThisDialog": "Вы уверены, что хотите удалить этот диалог?",
+    "pleaseKeepInMindThatTheDialogWillBeDeletedForYourInterlocutorAsWell": "Пожалуйста, имейте в виду, что этот диалог также будет удален для Вашего собеседника.",
+    "cancel": "Отмена",
+    "ok": "OK"
+  },
+  "chats": {
+    "locales": "ru-RU",
+    "enterYourMessage": "Введите Ваше сообщение",
+    "chooseTheChat": "Выберите чат...",
+    "noChats": "Нет чатов..."
+  },
+  "confirmationDialog": {
+    "pleaseConfirmTheAction": "Пожалуйста, подтвердите действие.",
+    "doYouWantToSetThisImageAsYourProfilePicture": "Вы хотите установить это изображение в качестве профильного?",
+    "no": "Нет",
+    "yes": "Да"
+  },
+  "firstMessageDialog": {
+    "enterYourMessage": "Введите Ваше сообщение",
+    "quit": "Закрыть",
+    "send": "Отправить"
+  },
+  "generalInfo": {
+    "locales": "ru-RU",
+    "email": "Элетронная почта:",
+    "myAds": "Мои объявления",
+    "myChats": "Мои чаты"
+  },
+  "header": {
+    "myProfile": "Мой профиль",
+    "myAds": "Мои объявления",
+    "myChats": "Мои чаты",
+    "logOut": "Выйти"
+  },
+  "imagesCard": {
+    "photos": "Photos",
+    "clickToAddPhotos": "Щелкните, чтобы добавить фото...",
+    "orDropThemHere": "...или перетащите их сюда.",
+    "clickToMakeThePictureTheMainOne": "Щелкните, чтобы сделать изображение главным.",
+    "youHaveTriedToAddTooManyPicturesThatExceedsTheLimit.": "Вы попытались добавить слишком много (4+) изображений. Это превышение лимита."
+  },
+  "interlocutors": {
+    "deletedAd": "(Удаленное объявление.)",
+    "you": "Вы:"
+  },
+  "logInForm": {
+    "theEmailFieldIsEmpty": "Поле для электронной почты пустое.",
+    "thePasswordFieldIsEmpty": "Поле для пароля пустое.",
+    "enterYourEmail": "Введите свою электронную почту...",
+    "enterYourPassword": "Введите свой пароль...",
+    "rememberFor7Days": "Запомнить на неделю.",
+    "continue": "Продолжить",
+    "dontHaveAnAccountYet": "Еще нет аккаунта?",
+    "signUp": "Зарегистрироваться."
+  },
+  "menu": {
+    "apiMenu": "/api/menu-ru"
+  },
+  "newAd": {
+    "createANewAd": "Создать новое объявление"
+  },
+  "newAdForm": {
+    "apiMenu": "/api/menu-ru",
+    "apiRegions": "/api/regions-ru",
+    "thePriceFieldIsEmpty": "Поля для цены пустое.",
+    "theMinimumPriceIs001USD": "Минимальная цена составляет 0.01 USD.",
+    "theTitleFieldIsEmpty": "Поле с названием пустое.",
+    "theCategoryIsNotChosen": "Не выбрана категория.",
+    "theSubCategoryIsNotChosen": "Не выбрана подкатегория.",
+    "theDescriptionFieldIsEmpty": "Поле для описания пустое.",
+    "theRegionIsNotChosen": "Не выбран регион.",
+    "theCityIsNotChosen": "Не выбран город.",
+    "productTitle": "Название продукции",
+    "exampleDeliciosMilk": "Пример: вкусное молоко.",
+    "category": "Категория",
+    "exampleDairyProducts": "Пример: молочная продукция.",
+    "subCategory": "Подкатегория",
+    "exampleMilk&Cream": "Пример: молоко и сливки.",
+    "description": "Описание",
+    "exampleFreshMilkFromOldMcDonaldsFarm": "Пример: свежее молоко с фермеры старого МакДональда.",
+    "priceUSD": "Цена (USD)",
+    "example10": "Пример: 10.",
+    "forFree": "Бесплатно",
+    "region": "Регион",
+    "exampleIndiana": "Пример: Индиана.",
+    "city": "Город",
+    "exampleIndianopolis": "Пример: Индианополис.",
+    "name": "Имя",
+    "email": "Электронная почта",
+    "save&Place": "Сохранить и разместить"
+  },
+  "profile": {
+    "myProfile": "Мой профиль"
+  },
+  "signUpForm": {
+    "theNameFieldIsEmpty": "Поле для имени пустое.",
+    "theEmailFieldIsEmpty": "Поле для электронной почты пустое.",
+    "thePasswordFieldIsEmpty": "Поле для пароля пустое.",
+    "thePasswordIsNotValid": "Пароль недействителен.",
+    "thePasswordsDoNotMatch": "Пароли не совпадают.",
+    "theCaptchaFieldIsEmpty": "Поле для капчи пустое.",
+    "inCorrectValueTryAgain": "Неверное значение. Попробуйте снова.",
+    "enterYourName": "Введите свое имя...",
+    "enterYourEmail": "Введите свою электронную почту...",
+    "aPasswordMustContainMinimum8CharactersAtLeastOneLetterAndOneNumber": "Пароль должен содержать миниумм 8 символов, по крайней мере одну букву и одну цифру.",
+    "createAPassword": "Создайте пароль...",
+    "confirmThePassword": "Подтвердите пароль...",
+    "continue": "Продолжить",
+    "alreadyHaveAnAccount": "Уже есть аккаунт?",
+    "logIn": "Войти."
+  },
+  "successDialog": {
+    "congratulations": "Поздравляем!",
+    "yourAdWasSuccessfullyCreated": "Ваше объвление успешно создано!",
+    "ok": "OK"
+  }
+}

@@ -18,8 +18,11 @@ import {
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import DeleteIcon from "@mui/icons-material/Delete";
 import { ImagesCardPropsInterface } from '../types';
+import { useTranslation } from 'react-i18next';
+import '../i18n';
 
 const ImagesCard: FC<ImagesCardPropsInterface> = ({ adIsCreated, creationDate, setAdIsCreated, images, setImages, mainPictureId, setMainPictureId }) => {
+  const { t }: { t: (value: string) => string } = useTranslation();
   const [imagesToUpload, setImagesToUpload] = useState<FileList | null>(null);
   const [imagesUploaded, setImagesUploaded] = useState(0);
   const [imagesBeingUploaded, setImagesBeingUploaded] = useState(0);
@@ -135,7 +138,7 @@ const ImagesCard: FC<ImagesCardPropsInterface> = ({ adIsCreated, creationDate, s
   return (
     <>
       <Typography variant="h5">
-        Photos
+        {t("imagesCard.photos")}
       </Typography>
       <Card
         onDragOver={onDragOver}
@@ -160,7 +163,7 @@ const ImagesCard: FC<ImagesCardPropsInterface> = ({ adIsCreated, creationDate, s
               startIcon={<PhotoCamera />}
               sx={{ textTransform: "none" }}
             >
-              Click to add photos...
+              {t("imagesCard.clickToAddPhotos")}
             </Button>
           </label>
         </CardActions>
@@ -169,13 +172,13 @@ const ImagesCard: FC<ImagesCardPropsInterface> = ({ adIsCreated, creationDate, s
             variant="body2"
             color="text.secondary"
           >
-            ...or drop them here.
+            {t("imagesCard.orDropThemHere")}
           </Typography>
         </CardContent>
         <div className="images">
           {images?.map((e, i) => {
             return (
-              <Tooltip title="Click to make the picture the main one.">
+              <Tooltip title={t("imagesCard.clickToMakeThePictureTheMainOne")}>
                 <Card
                   className={`${mainPictureId === e.id ? "main-" : ""}image-card ${imageBeingRemoved ? "no-pointer-events" : ""}`}
                   onMouseOver={() => { }}
@@ -227,7 +230,7 @@ const ImagesCard: FC<ImagesCardPropsInterface> = ({ adIsCreated, creationDate, s
             severity="error"
             className="alert"
           >
-            You have tried to add too many (4+) pictures. That exceeds the limit.
+            {t("imagesCard.youHaveTriedToAddTooManyPicturesThatExceedsTheLimit")}
           </Alert>
         }
       </Card>

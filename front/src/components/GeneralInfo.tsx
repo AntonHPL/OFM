@@ -6,8 +6,11 @@ import { AccountCircle } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import { useTranslation } from 'react-i18next';
+import '../i18n';
 
 const GeneralInfo: FC = () => {
+  const { t }: { t: (value: string) => string } = useTranslation();
   const [accountImage, setAccountImage] = useState("");
   const { changingAccountImage, closeDialog, setIsDialogOpen } = useProfileContext();
   const [imageToUpload, setImageToUpload] = useState<File | null>(null);
@@ -83,7 +86,7 @@ const GeneralInfo: FC = () => {
           <Typography variant="body2">
             {user &&
               `On Online Farmer's Market: since ${new Date(user.registrationDate)
-                .toLocaleDateString("en-US", {
+                .toLocaleDateString(t("generalInfo.locales"), {
                   day: "numeric",
                   month: "long",
                   year: "numeric",
@@ -94,9 +97,9 @@ const GeneralInfo: FC = () => {
         </div>
       </div>
       <div>
-        <Paper className="email">
+        <Paper className="email" sx={{ backgroundColor: "secondary.light" }}>
           <Typography variant="body1">
-            Email: {user?.email}
+            {t("generalInfo.email")} {user?.email}
           </Typography>
         </Paper>
         <div className="buttons">
@@ -107,7 +110,7 @@ const GeneralInfo: FC = () => {
             }}
             variant="contained"
           >
-            My Ads
+            {t("generalInfo.myAds")}
           </Button>
           <Button
             onClick={() => {
@@ -116,7 +119,7 @@ const GeneralInfo: FC = () => {
             }}
             variant="contained"
           >
-            My Chats
+            {t("generalInfo.myChats")}
           </Button>
         </div>
       </div>

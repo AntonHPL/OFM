@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState, useCallback, useEffect } from "react";
 
 import {
   BrowserRouter as Router,
@@ -19,26 +19,47 @@ import { UserContext } from "./components/UserContext";
 import "./App.scss";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { orange } from "@mui/material/colors";
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: orange[500],
-      light: orange[50]
-    },
-    secondary: { main: orange[50] },
-  }
-});
+import logoBright from "./images/logo_bright.png";
+import logoDark from "./images/logo_dark.png";
+import EmailIsVerified from "./components/EmailIsVerified";
 
 const App = () => {
   const { user, isTokenValidationComplete } = useContext(UserContext);
-  console.log("user", user)
+  // const [palette, setPalette] = useState<Object>({});
+  const [color, setColor] = useState<any>(orange);
+
+  const createPalette = useCallback((color: any) => ({
+    primary: {
+      light: color[300],
+      main: color[500],
+      dark: color[700]
+    },
+    secondary: {
+      light: color[50],
+      main: color[100],
+      dark: color[200]
+    },
+  }), [color]);
+
+  const palette = createPalette(color);
+
+  // const getDesignTokens = (mode: PaletteMode) => ({
+  //   palette: {
+  //     mode,
+  //     ...(mode === "light" ? orangePalette : indigoPalette)
+  //   }
+  // });
+
+  // const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
+
+  const theme = createTheme({ palette: palette });
+
   return (
     <ThemeProvider theme={theme}>
       <Router>
         {isTokenValidationComplete &&
           <>
-            <Header />
+            <Header logo={color === orange ? logoDark : logoBright} color={color} setColor={setColor} />
             <Routes>
               <Route path="/" element={<Ads />} />
               <Route path="/ad/:id" element={<Ad />} />
@@ -52,7 +73,10 @@ const App = () => {
                   </Route>
                   <Route path="*" element={<Navigate to="/" />} />
                 </> :
-                <Route path="*" element={<Navigate to="/" />} />
+                <>
+                  <Route path="/email-is-verified" element={<EmailIsVerified />} />
+                  <Route path="*" element={<Navigate to="/" />} />
+                </>
               }
             </Routes>
           </>

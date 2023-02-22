@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, FC, MouseEvent } from "react";
+import { useState, useEffect, useContext, FC, MouseEvent, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppBar, Menu, MenuItem, Toolbar, Box, Button, IconButton } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
@@ -6,43 +6,57 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import { UserContext } from "./UserContext";
 import AccountDialog from "./AccountDialog";
 import axios from "axios";
+import "/node_modules/flag-icons/css/flag-icons.min.css";
+import { useTranslation } from 'react-i18next';
+import '../i18n';
+// import { t, i18n } from "./translation";
+import { Lens } from "@mui/icons-material";
+import { orange, indigo } from "@mui/material/colors";
 
-import logo from "../images/logo.png";
-
-const Header: FC = () => {
+const Header: FC<any> = ({ logo, color, setColor }) => {
+  const { t, i18n }: { t: (value: string) => string, i18n: { changeLanguage: (lang: string) => void } } = useTranslation();
   const { user, setUser, setIsLogInDialogOpen } = useContext(UserContext);
-  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+  const [accountMenuAnchorEl, setAccountMenuAnchorEl] = useState<HTMLButtonElement | null>(null);
+  const [languagesMenuAnchorEl, setLanguagesMenuAnchorEl] = useState<HTMLButtonElement | null>(null);
+  const [language, setLanguage] = useState("gb");
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   // const [menu, setMenu] = useState(null);
-
+  useMemo((): void => i18n.changeLanguage(language), [language]);
   const [accountImage, setAccountImage] = useState("");
 
-  const isMenuOpen = !!anchorEl;
+  const isAccountMenuOpen = !!accountMenuAnchorEl;
   // const isMobileMenuOpen = !!mobileMoreAnchorEl;
+
+  const isLanguagesMenuOpen = !!languagesMenuAnchorEl;
 
   const navigate = useNavigate();
 
-  const openMenu = (e: MouseEvent<HTMLButtonElement>): void => setAnchorEl(e.currentTarget);
+  const openAccountMenu = (e: MouseEvent<HTMLButtonElement>): void => setAccountMenuAnchorEl(e.currentTarget);
+  const openLanguagesMenu = (e: MouseEvent<HTMLButtonElement>): void => setLanguagesMenuAnchorEl(e.currentTarget);
   const handleMobileMenuClose = (): void => {
     setMobileMoreAnchorEl(null);
   };
 
-  const closeMenu = (): void => {
-    setAnchorEl(null);
+  const closeAccountMenu = (): void => {
+    setAccountMenuAnchorEl(null);
     handleMobileMenuClose();
+  };
+
+  const closeLanguagesMenu = (): void => {
+    setLanguagesMenuAnchorEl(null);
   };
 
   const logout = (): void => {
     axios
       .get("/api/log-out")
       .then(() => {
-        closeMenu();
+        closeAccountMenu();
         setUser(null);
         setIsLogInDialogOpen(true);
       })
       .catch(error => {
         console.error("The error occured: ", error.message);
-        closeMenu();
+        closeAccountMenu();
       });
   };
 
@@ -59,27 +73,55 @@ const Header: FC = () => {
   // }, []);
 
   const open = (path: string, outletTitle: string): void => {
-    closeMenu();
+    closeAccountMenu();
     navigate(`/profile/${path}`);
     localStorage.setItem("outletTitle", outletTitle);
   };
 
-  const menuId = "primary-search-account-menu";
-  const renderMenu = (
+  const languagesMenuId = "languages-menu-id";
+  const renderLanguagesMenu = (
     <Menu
-      anchorEl={anchorEl}
+      anchorEl={languagesMenuAnchorEl}
       anchorOrigin={{
         vertical: "bottom",
         horizontal: "right",
       }}
-      id={menuId}
+      id={languagesMenuId}
+      keepMounted
+      transformOrigin={{
+        vertical: "top",
+        horizontal: "right",
+      }}
+      open={isLanguagesMenuOpen}
+      onClose={closeLanguagesMenu}
+    >
+      {["ru", "gb"].filter(el => el !== language).map(el => (
+        <MenuItem onClick={() => {
+          setLanguage(el);
+          closeLanguagesMenu();
+        }
+        }>
+          {el === "gb" ? "EN" : el.toUpperCase()}
+        </MenuItem>
+      ))}
+    </Menu>
+  )
+  const accountMenuId = "primary-search-account-menu";
+  const renderAccountMenu = (
+    <Menu
+      anchorEl={accountMenuAnchorEl}
+      anchorOrigin={{
+        vertical: "bottom",
+        horizontal: "right",
+      }}
+      id={accountMenuId}
       keepMounted
       // transformOrigin = {{
       //   vertical: "top",
       //   horizontal: "right",
       // }}
-      open={isMenuOpen}
-      onClose={closeMenu}
+      open={isAccountMenuOpen}
+      onClose={closeAccountMenu}
     >
       <MenuItem
         onClick={() => {
@@ -89,19 +131,19 @@ const Header: FC = () => {
           } else {
             setIsLogInDialogOpen(true);
           }
-          closeMenu();
+          closeAccountMenu();
         }}
       >
-        My Profile
+        {t("header.myProfile")}
       </MenuItem>
       <MenuItem onClick={() => open("ads", "My Ads")}>
-        My Ads
+        {t("header.myAds")}
       </MenuItem>
       <MenuItem onClick={() => open("chats", "My Chats")}>
-        My Chats
+        {t("header.myChats")}
       </MenuItem>
       <MenuItem onClick={logout}>
-        Log out
+        {t("header.logOut")}
       </MenuItem>
     </Menu>
   );
@@ -172,6 +214,25 @@ const Header: FC = () => {
             />
           </div>
           <Box sx={{ flexGrow: 1 }} />
+          {[orange, indigo].filter(el => el !== color).map(el => (
+            <IconButton onClick={() => setColor(el)}>
+              <Lens sx={{ color: el[500] }} />
+            </IconButton>
+          ))}
+          <Button
+            size="large"
+            // aria-label="current_user_account"
+            aria-controls={languagesMenuId}
+            // aria-haspopup="true"
+            onClick={openLanguagesMenu}
+            color="inherit"
+            startIcon={
+              <span className={`fi fi-${language}`}></span>
+            }
+          // className="profile-button"
+          >
+            {language === "gb" ? "EN" : language.toUpperCase()}
+          </Button>
           <IconButton
             size="large"
             color="inherit"
@@ -186,9 +247,9 @@ const Header: FC = () => {
             <Button
               size="large"
               aria-label="current_user_account"
-              aria-controls={menuId}
+              aria-controls={accountMenuId}
               aria-haspopup="true"
-              onClick={openMenu}
+              onClick={openAccountMenu}
               color="inherit"
               endIcon={
                 <div className="account-image">
@@ -206,7 +267,7 @@ const Header: FC = () => {
               size="large"
               edge="end"
               aria-label="current_user_account"
-              aria-controls={menuId}
+              aria-controls={accountMenuId}
               aria-haspopup="true"
               onClick={() => setIsLogInDialogOpen(true)}
               color="inherit"
@@ -229,7 +290,8 @@ const Header: FC = () => {
         </Toolbar>
       </AppBar>
       {/* {renderMobileMenu} */}
-      {user && renderMenu}
+      {renderLanguagesMenu}
+      {user && renderAccountMenu}
       <AccountDialog />
     </div>
   );

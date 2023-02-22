@@ -25,6 +25,8 @@ import {
   NewAdFormPropsInterface,
   RegionInterface
 } from '../types';
+import { useTranslation } from 'react-i18next';
+import '../i18n';
 
 const NewAdForm: FC<NewAdFormPropsInterface> = ({
   ad,
@@ -36,6 +38,7 @@ const NewAdForm: FC<NewAdFormPropsInterface> = ({
   emptyAd,
   setImages
 }) => {
+  const { t } = useTranslation();
   const [categories, setCategories] = useState<Array<CategoryInterface> | null>(null);
   const [regions, setRegions] = useState<Array<RegionInterface> | null>(null);
   const [priceInputDisabled, setPriceInputDisabled] = useState(false);
@@ -72,7 +75,7 @@ const NewAdForm: FC<NewAdFormPropsInterface> = ({
       {value}
     </Typography>
   );
-  
+
   const disabledField = (type: string, label: string, value: string): ReactElement => (
     <TextField
       type={type}
@@ -95,7 +98,7 @@ const NewAdForm: FC<NewAdFormPropsInterface> = ({
 
   useEffect(() => {
     axios
-      .get("/api/menu")
+      .get(t("newAdForm.apiMenu"))
       .then(({ data }) => {
         setCategories(data.map((e: DataCategoryInterface): CategoryInterface => {
           return ({
@@ -112,7 +115,7 @@ const NewAdForm: FC<NewAdFormPropsInterface> = ({
       })
       .catch(error => console.error("The error occured: ", error.message));
     axios
-      .get("/api/regions")
+      .get(t("newAdForm.apiRegions"))
       .then(({ data }) => {
         setRegions(data.map((e: DataRegionInterface): RegionInterface => {
           return ({
@@ -139,21 +142,21 @@ const NewAdForm: FC<NewAdFormPropsInterface> = ({
       if (key === "price") {
         if (priceInputDisabled) return;
         if (value === "") {
-          errorText = "The Price Field is empty.";
+          errorText = t("newAdForm.thePriceFieldIsEmpty");
           push();
         } else if (value <= 0) {
-          errorText = "The Minimum Price is 0.01 USD.";
+          errorText = t("newAdForm.theMinimumPriceIs001USD");
           push();
         };
       };
       if (key !== "price" && !value) {
         switch (key) {
-          case "title": errorText = "The Title Field is empty."; break;
-          case "category": errorText = "The Category is not chosen."; break;
-          case "subCategory": errorText = "The SubCategory is not chosen."; break;
-          case "description": errorText = "The Description Field is empty."; break;
-          case "region": errorText = "The Region is not chosen."; break;
-          case "city": errorText = "The City is not chosen."; break;
+          case "title": errorText = t("newAdForm.theTitleFieldIsEmpty"); break;
+          case "category": errorText = t("newAdForm.theCategoryIsNotChosen"); break;
+          case "subCategory": errorText = t("newAdForm.theSubCategoryIsNotChosen"); break;
+          case "description": errorText = t("newAdForm.theDescriptionFieldIsEmpty"); break;
+          case "region": errorText = t("newAdForm.theRegionIsNotChosen"); break;
+          case "city": errorText = t("newAdForm.theCityIsNotChosen"); break;
         };
         push();
       };
@@ -200,10 +203,10 @@ const NewAdForm: FC<NewAdFormPropsInterface> = ({
         <TextField
           autoComplete="off"
           error={!!EF("title")}
-          label="Product Title"
+          label={t("newAdForm.productTitle")}
           value={ad.title}
           variant="outlined"
-          helperText={`${EF("title")?.errorText || ""} Example: Delicious Milk.`}
+          helperText={`${EF("title")?.errorText || ""} ${t("newAdForm.exampleDeliciosMilk")}`}
           onChange={e => {
             setAd({ ...ad, title: e.target.value });
             RE("title");
@@ -217,11 +220,11 @@ const NewAdForm: FC<NewAdFormPropsInterface> = ({
             className={ad.category ? "half-width-field" : "full-width-field"}
           >
             <InputLabel id="categories-select">
-              Category
+              {t("newAdForm.category")}
             </InputLabel>
             <Select
               labelId="categories-select"
-              label="Category"
+              label={t("newAdForm.category")}
               value={ad.category}
               onChange={e => {
                 setAd({ ...ad, category: e.target.value });
@@ -232,7 +235,7 @@ const NewAdForm: FC<NewAdFormPropsInterface> = ({
               {categories?.map(e => menuItem(e))}
             </Select>
             <FormHelperText>
-              {EF("category")?.errorText || ""} Example: Dairy Products.
+              {EF("category")?.errorText || ""} {t("newAdForm.exampleDairyProducts")}
             </FormHelperText>
           </FormControl>
           {ad.category &&
@@ -241,11 +244,11 @@ const NewAdForm: FC<NewAdFormPropsInterface> = ({
               className="half-width-field"
             >
               <InputLabel id="subCategories-select">
-                SubCategory
+                {t("newAdForm.subCategory")}
               </InputLabel>
               <Select
                 labelId="subCategories-select"
-                label="SubCategory"
+                label={t("newAdForm.subCategory")}
                 value={ad.subCategory}
                 onChange={e => {
                   setAd({ ...ad, subCategory: e.target.value });
@@ -256,7 +259,7 @@ const NewAdForm: FC<NewAdFormPropsInterface> = ({
                 {categories?.find(e => e.value === ad.category)?.subCategories.map(e => menuItem(e))}
               </Select>
               <FormHelperText>
-                {EF("subCategory")?.errorText || ""} Example: Milk & Cream.
+                {EF("subCategory")?.errorText || ""} {t("newAdForm.exampleMilk&Cream")}
               </FormHelperText>
             </FormControl>
           }
@@ -266,13 +269,13 @@ const NewAdForm: FC<NewAdFormPropsInterface> = ({
           error={!!EF("description")}
           multiline
           rows={4}
-          label="Description"
+          label={t("newAdForm.description")}
           value={ad.description}
           onChange={e => {
             setAd({ ...ad, description: e.target.value });
             RE("description");
           }}
-          helperText={`${EF("description")?.errorText || ""} Example: Fresh milk from old McDonald's farm.`}
+          helperText={`${EF("description")?.errorText || ""} ${t("newAdForm.exampleFreshMilkFromOldMcDonaldsFarm")}`}
           className="form-row"
         />
         <div className="price-block">
@@ -280,10 +283,10 @@ const NewAdForm: FC<NewAdFormPropsInterface> = ({
             inputProps={{ min: 0 }}
             autoComplete="off"
             error={priceInputDisabled ? false : !!EF("price")}
-            label="Price (USD)"
+            label={t("newAdForm.priceUSD")}
             value={ad.price}
             type="number"
-            helperText={`${EF("price")?.errorText || ""} Example: 10.`}
+            helperText={`${EF("price")?.errorText || ""} ${t("newAdForm.example10")}`}
             disabled={priceInputDisabled}
             onChange={e => {
               setAd({ ...ad, price: +e.target.value });
@@ -298,7 +301,7 @@ const NewAdForm: FC<NewAdFormPropsInterface> = ({
               setAd({ ...ad, price: "" });
               RE("price");
             }}
-            label="For free"
+            label={t("newAdForm.forFree")}
             className="price-label" />
         </div>
         {typography("Product's Location")}
@@ -308,11 +311,11 @@ const NewAdForm: FC<NewAdFormPropsInterface> = ({
             className={ad.region ? "half-width-field" : "full-width-field"}
           >
             <InputLabel id="regions-select">
-              Region
+              {t("newAdForm.region")}
             </InputLabel>
             <Select
               labelId="regions-select"
-              label="Region"
+              label={t("newAdForm.region")}
               value={ad.region}
               onChange={e => {
                 setAd({ ...ad, region: e.target.value });
@@ -323,7 +326,7 @@ const NewAdForm: FC<NewAdFormPropsInterface> = ({
               {regions?.map(e => menuItem(e))}
             </Select>
             <FormHelperText>
-              {EF("region")?.errorText || ""} Example: Indiana.
+              {EF("region")?.errorText || ""} {t("newAdForm.exampleIndiana")}
             </FormHelperText>
           </FormControl>
           {ad.region &&
@@ -332,11 +335,11 @@ const NewAdForm: FC<NewAdFormPropsInterface> = ({
               className="half-width-field"
             >
               <InputLabel id="cities-select">
-                City
+                {t("newAdForm.city")}
               </InputLabel>
               <Select
                 labelId="cities-select"
-                label="City"
+                label={t("newAdForm.city")}
                 value={ad.city}
                 onChange={e => {
                   setAd({ ...ad, city: e.target.value });
@@ -347,20 +350,20 @@ const NewAdForm: FC<NewAdFormPropsInterface> = ({
                 {regions?.find(e => e.value === ad.region)?.cities.map(e => menuItem(e))}
               </Select>
               <FormHelperText>
-                {EF("city")?.errorText || ""} Example: Indianopolis.
+                {EF("city")?.errorText || ""} {t("newAdForm.exampleIndianopolis")}
               </FormHelperText>
             </FormControl>
           }
         </div>
         {typography("Seller's Contacts")}
-        {disabledField("text", "Name", ad.sellerName)}
-        {disabledField("email", "Email", ad.sellerEmail)}
+        {disabledField("text", t("newAdForm.name"), ad.sellerName)}
+        {disabledField("email", t("newAdForm.email"), ad.sellerEmail)}
         <Button
           type="submit"
           startIcon={<SaveIcon />}
           variant="contained"
         >
-          Save & place
+          {t("newAdForm.save&Place")}
         </Button>
       </form>
       <SuccessDialog open={isDialogOpen} closeDialog={closeDialog} />

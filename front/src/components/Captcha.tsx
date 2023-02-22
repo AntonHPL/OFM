@@ -1,7 +1,9 @@
-import { useState, useEffect, useRef, FC } from "react";
+import { useEffect, useRef, FC } from "react";
 import { TextField, IconButton } from "@mui/material";
 import { CaptchaPropsInterface } from "../types";
 import ReplayIcon from "@mui/icons-material/Replay";
+import { useTranslation } from 'react-i18next';
+import '../i18n';
 
 const Captcha: FC<CaptchaPropsInterface> = ({
     captchaEntered,
@@ -11,6 +13,7 @@ const Captcha: FC<CaptchaPropsInterface> = ({
     resetErrors,
     captchaReload
 }) => {
+    const { t }: { t: (value: string) => string } = useTranslation();
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const getCaptcha = (): void => {
         if (canvasRef.current) {
@@ -70,7 +73,7 @@ const Captcha: FC<CaptchaPropsInterface> = ({
                         setCaptchaEntered(e.target.value)
                     }}
                     value={captchaEntered}
-                    placeholder="Enter the Captcha..."
+                    placeholder={t("captcha.enterTheCaptcha")}
                     helperText={errorFound("captcha")?.errorText}
                 />
             </div>

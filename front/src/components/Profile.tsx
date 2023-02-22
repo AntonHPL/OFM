@@ -1,16 +1,20 @@
-import { useState, useEffect, FC } from "react";
+import { useState, FC } from "react";
 import {
   Breadcrumbs,
   Link,
+  Paper,
   Typography,
 } from "@mui/material";
 import { Outlet, useNavigate } from "react-router-dom";
 import { ProfileContextInterface } from "../types";
 import ConfirmationDialog from "./ConfirmationDialog";
+import { useTranslation } from 'react-i18next';
+import '../i18n';
 
 const Profile: FC = () => {
+  const { t } = useTranslation();
   // const { user, isAccountImageChanged, setIsAccountImageChanged } = useContext(UserContext);
-  const defaultOutletTitle = "My Profile";
+  const defaultOutletTitle = t("profile.myProfile");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [changingAccountImage, setChangingAccountImage] = useState(false);
   const closeDialog = () => setIsDialogOpen(false);
@@ -43,18 +47,18 @@ const Profile: FC = () => {
   // }, [outletTitle]);
 
   return (
-    <div className="profile-container">
+    <Paper className="profile-container" sx={{ backgroundColor: "secondary.light" }}>
       {outletTitle !== defaultOutletTitle &&
         <Breadcrumbs aria-label="breadcrumb">
           <Link
             underline="hover"
             color="inherit"
             onClick={() => {
-              localStorage.setItem("outletTitle", "My Profile");
+              localStorage.setItem("outletTitle", t("profile.myProfile"));
               navigate("/profile/general-info");
             }}
           >
-            My Profile
+            {t("profile.myProfile")}
           </Link>
           <Typography color="text.primary">
             {outletTitle}
@@ -71,7 +75,7 @@ const Profile: FC = () => {
         changingAccountImage={changingAccountImage}
         setChangingAccountImage={setChangingAccountImage}
       />
-    </div>
+    </Paper>
   );
 };
 

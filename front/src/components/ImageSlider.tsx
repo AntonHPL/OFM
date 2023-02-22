@@ -26,7 +26,7 @@ const ImageSlider: FC<ImageSliderPropsInterface> = ({ ad }) => {
 
   return (
     ad ?
-      <Paper className="image-slider">
+      <Paper className="image-slider" sx={{ backgroundColor: "secondary.light" }}>
         {ad.images.length ? (
           ad.images.length > 1 ?
             <>
@@ -49,18 +49,24 @@ const ImageSlider: FC<ImageSliderPropsInterface> = ({ ad }) => {
                 <img src={`data:image/png;base64,${ad.images[0].data}`} />
               </div>
               <div className='buttons'>
-                <IconButton onClick={() => {
-                  if (ad && counter < 1) return;
-                  setCounter(prev => prev - 1);
-                  setNextButtonClicked(false);
-                }}>
+                <IconButton
+                  sx={{ backgroundColor: "secondary.light" }}
+                  onClick={() => {
+                    if (ad && counter < 1) return;
+                    setCounter(prev => prev - 1);
+                    setNextButtonClicked(false);
+                  }}
+                >
                   <NavigateBefore />
                 </IconButton>
-                <IconButton onClick={() => {
-                  if (ad && counter > ad.images.length) return;
-                  setCounter(prev => prev + 1);
-                  setNextButtonClicked(true);
-                }}>
+                <IconButton
+                  sx={{ backgroundColor: "secondary.light" }}
+                  onClick={() => {
+                    if (ad && counter > ad.images.length) return;
+                    setCounter(prev => prev + 1);
+                    setNextButtonClicked(true);
+                  }}
+                >
                   <NavigateNext />
                 </IconButton>
               </div>

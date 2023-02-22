@@ -11,13 +11,17 @@ import {
   Select,
   MenuItem,
   Pagination,
+  Paper
 } from '@mui/material';
 import SearchIcon from "@mui/icons-material/Search";
 import { SearchOff } from '@mui/icons-material';
 import { AdInterface, GetAdsPropsInterface, SortingOptionInterface } from '../types';
 import AdCard from "./AdCard";
+import { useTranslation } from 'react-i18next';
+import '../i18n';
 
 const Ads: FC = () => {
+  const { t }: { t: (value: string) => string } = useTranslation();
   const [ads, setAds] = useState<Array<AdInterface> | null>(null);
   const [sortingParams, setSortingParams] = useState<Array<string> | null>(null);
   const [pageCount, setPageCount] = useState(0);
@@ -60,14 +64,14 @@ const Ads: FC = () => {
   }, [sortingParams, category, subCategory]);
 
   const sortingOptions: Array<SortingOptionInterface> = [
-    { value: "price_asc", label: "Price: lowest first" },
-    { value: "price_desc", label: "Price: highest first" },
-    { value: "creationDate_desc", label: "Date: newest first" },
-    { value: "creationDate_asc", label: "Date: oldest first" },
+    { value: "price_asc", label: t("ads.priceLowestFirst") },
+    { value: "price_desc", label: t("ads.priceHighestFirst") },
+    { value: "creationDate_desc", label: t("ads.dateNeswestFirst") },
+    { value: "creationDate_asc", label: t("ads.dateOldestFirst") },
   ];
 
   return (
-    <div className="ads-container">
+    <Paper className="ads-container" sx={{ backgroundColor: "secondary.light" }}>
       <Menu
         getAdsProps={getAdsProps}
         setSubString={setSubString}
@@ -81,12 +85,12 @@ const Ads: FC = () => {
             size="small"
           >
             <InputLabel id="sorting-select">
-              Sorting
+              {t("ads.sorting")}
             </InputLabel>
             <Select
               labelId="sorting-select"
               id="demo-simple-select"
-              label="Sorting"
+              label={t("ads.sorting")}
               defaultValue={"creationDate_desc"}
               onChange={e => {
                 setSortingParams(e.target.value.split("_"));
@@ -112,7 +116,7 @@ const Ads: FC = () => {
                 </InputAdornment>
               ),
             }}
-            placeholder="Search..."
+            placeholder={t("ads.search")}
             variant="standard"
             onChange={e => setSubString(e.target.value)}
             value={subString}
@@ -121,9 +125,9 @@ const Ads: FC = () => {
             className={`search${ads ? "-compressed" : ""}`}
           />
           {ads &&
-            <div className="ads-amount">
-              {adsAmount} {adsAmount === 1 ? "ad" : "ads"} found
-            </div>
+            <Paper className="ads-amount" sx={{ backgroundColor: "primary.dark" }}>
+              {adsAmount} {adsAmount === 1 ? t("ads.ad") : t("ads.ads")} {t("ads.found")}
+            </Paper>
           }
         </div>
         <div className="ads">
@@ -148,7 +152,7 @@ const Ads: FC = () => {
             <div className="plug">
               <SearchOff fontSize="large" />
               <Typography variant="body1">
-                Nothing was found. Try to change the Search Criteria.
+                {t("ads.nothingWasFoundTryToChangeTheSearchCriteria")}
               </Typography>
             </div>
           }
@@ -166,7 +170,7 @@ const Ads: FC = () => {
           />
         }
       </div>
-    </div>
+    </Paper>
   );
 };
 

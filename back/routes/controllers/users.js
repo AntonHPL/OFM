@@ -55,24 +55,29 @@ const signUp = async (req, res) => {
 
 const sendMail = user => {
   const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
+    host: 'smtp.yandex.ru',
     port: 465,
     secure: true,
     auth: {
-      user: "antosha.dashko@gmail.com",
-      pass: "axvqagcxlocnwedx",
+      user: "ofm-api@yandex.ru",
+      pass: "hgtldqioicvixckk",
     },
   });
 
   const mailOptions = {
-    from: "antosha.dashko@gmail.com",
+    from: "ofm-api@yandex.ru",
     to: user.email,
     subject: "Please verify your email address on OFM.",
     html: `
-      <h4>Dear ${user.name}!</h4>
-      <p>Thank you for joining OFM!</p>
-      <p>Please cerify your email address by clicking the link below:</p>
-      <a href = "https://ofm-api.vercel.app/api/verify-email?token=${user.emailToken}">Verify the Email</a>
+      <h1 style="font-size: 2em">Dear ${user.name}!</h1>
+      <p style="font-size: 1.5em">
+        Thank you for joining OFM!
+        <br />
+        Please <a href="https://ofm-api.vercel.app/api/verify-email?token=${user.emailToken}">verify</a> your email address.
+      </p>
+      <p style="font-size: 1em">
+        This is an automatic email, no reply is required.
+      </p>
     `
   };
 
@@ -98,7 +103,7 @@ const verifyEmail = (req, res) => {
       user.isVerified = true;
       return user.save();
     })
-    .then(() => res.json("Ok"))
+    .then(() => res.redirect("https://ofm-app.vercel.app/email-is-verified"))
     .catch(error => console.error(error))
 };
 

@@ -7,6 +7,7 @@
   a {
     cursor: pointer;
   }
+
   h5,
   h6 {
     font-weight: 500;
@@ -18,7 +19,6 @@
 
   .aside {
     >div:not(.alert) {
-      background: $secondary_bright;
       padding: 8px;
       @include size(calc(400px - 16px));
       @include border_box();
@@ -75,17 +75,16 @@
       @include size(100%);
       @include border_box();
       margin-top: 16px;
-      box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);
-      background: $secondary_bright;
+      box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+
       svg {
-        color: $primary_main;
+        // color: $primary_main;
       }
     }
   }
 
   .description,
   .questions {
-    background: $secondary_bright;
     @include indents(16px 0 0, 8px);
     @include size(100%);
 

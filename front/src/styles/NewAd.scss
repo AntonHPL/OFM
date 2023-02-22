@@ -1,7 +1,6 @@
 .new-ad-container {
   @include indents($padding: 8px 24px 16px);
   min-height: calc(100vh - 64px);
-  background-color: $secondary_bright;
   @include border-box();
 
   h4 {
@@ -15,7 +14,6 @@
 
   .info-card {
     @include size(500px, 500px);
-    background-color: $secondary_bright  !important;
     position: fixed;
     top: 150px;
     right: 16px;

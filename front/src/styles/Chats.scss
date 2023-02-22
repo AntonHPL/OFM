@@ -6,12 +6,7 @@
   .backdrop {
     @include relative();
     border-radius: 4px;
-    background-color: $secondary_main;
     @include size(100%, 100%);
-
-    svg {
-      color: $primary_dark;
-    }
   }
 
   .skeleton {
@@ -21,7 +16,7 @@
   }
 
   .no-chats-plug {
-    @include border($secondary_dark, 4px);
+    border-radius: 4px;
   }
 
   .choose-the-chat-plug,
@@ -41,7 +36,7 @@
 
 .chat-and-form {
   @include flex_options(column, $justify_content: stretch);
-  @include border($secondary_dark, 4px);
+  border-radius: 4px;
   @include border_box();
   @include size(700px);
 
@@ -56,7 +51,6 @@
       @include flex_options($justify_content: center);
 
       div {
-        background-color: $secondary_bright;
         @include size(fit-content, fit-content);
         @include indents(4px 0, 4px);
       }
@@ -71,7 +65,7 @@
     }
 
     .sent-message {
-      background-color: $primary_dark;
+      // background-color: $primary_dark;
       color: white;
       align-self: flex-end;
       border-radius: 8px 8px 0;

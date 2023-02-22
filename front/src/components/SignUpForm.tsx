@@ -4,8 +4,11 @@ import Captcha from './Captcha';
 import { UserContext } from "./UserContext";
 import { SignUpFormPropsInterface, SignUpFormInputsInterface, ErrorInterface, ErrorsInterface } from "../types";
 import axios from "axios";
+import { useTranslation } from 'react-i18next';
+import '../i18n';
 
 const SignUpForm: FC<SignUpFormPropsInterface> = ({ setLoading }) => {
+  const { t }: { t: (value: string) => string } = useTranslation();
   const emptyInputs: SignUpFormInputsInterface = {
     name: "",
     email: "",
@@ -65,31 +68,31 @@ const SignUpForm: FC<SignUpFormPropsInterface> = ({ setLoading }) => {
     Object.entries(inputs).map(([key, value]) => {
       if (!value) {
         switch (key) {
-          case "name": errorText = "The Name Field is empty."; break;
-          case "email": errorText = "The Email Field is empty."; break;
-          case "password": errorText = "The Password Field is empty."; break;
+          case "name": errorText = t("signUpForm.theNameFieldIsEmpty"); break;
+          case "email": errorText = t("signUpForm.theEmailFieldIsEmpty"); break;
+          case "password": errorText = t("signUpForm.thePasswordFieldIsEmpty"); break;
         };
         errorsData.inputs.push({ field: key, errorText: errorText });
       };
     });
     if (!passwordRegExp.test(inputs.password)) {
-      errorsData.inputs.push({ field: "password", errorText: "The password is not valid." })
+      errorsData.inputs.push({ field: "password", errorText: t("signUpForm.thePasswordIsNotValid") })
     }
     if (inputs.password !== reenteredPassword) {
       errorsData.reenteredPassword = {
         field: "reenteredPassword",
-        errorText: "The Passwords do not match.",
+        errorText: t("signUpForm.thePasswordsDoNotMatch"),
       };
     };
     if (captchaEntered === "") {
       errorsData.captcha = {
         field: "captcha",
-        errorText: "The Captcha Field is empty.",
+        errorText: t("signUpForm.theCaptchaFieldIsEmpty"),
       }
     } else if (captchaEntered !== captchaCreated) {
       errorsData.captcha = {
         field: "captcha",
-        errorText: "Incorrect value. Try again.",
+        errorText: t("signUpForm.inCorrectValueTryAgain"),
       };
       setCaptchaReload(!captchaReload);
     };
@@ -124,7 +127,7 @@ const SignUpForm: FC<SignUpFormPropsInterface> = ({ setLoading }) => {
         variant="outlined"
         value={inputs.name}
         autoComplete="off"
-        placeholder="Enter your Name..."
+        placeholder={t("signUpForm.enterYourName")}
         helperText={errorFound("name")?.errorText || ""}
         onChange={e => {
           resetErrors("name");
@@ -139,7 +142,7 @@ const SignUpForm: FC<SignUpFormPropsInterface> = ({ setLoading }) => {
         variant="outlined"
         value={inputs.email}
         autoComplete="off"
-        placeholder="Enter your Email..."
+        placeholder={t("signUpForm.enterYourEmail")}
         helperText={errorFound("email")?.errorText || ""}
         onChange={e => {
           resetErrors("email");
@@ -151,7 +154,7 @@ const SignUpForm: FC<SignUpFormPropsInterface> = ({ setLoading }) => {
         }}
         className="form-row"
       />
-      <Tooltip title="A password must contain minimum 8 characters, at least one letter and one number.">
+      <Tooltip title={t("signUpForm.aPasswordMustContainMinimum8CharactersAtLeastOneLetterAndOneNumber")}>
         <TextField
           error={!!errorFound("password")}
           type="password"
@@ -159,7 +162,7 @@ const SignUpForm: FC<SignUpFormPropsInterface> = ({ setLoading }) => {
           variant="outlined"
           value={inputs.password}
           autoComplete="off"
-          placeholder="Create a Password..."
+          placeholder={t("signUpForm.createAPassword")}
           helperText={errorFound("password")?.errorText || ""}
           onChange={e => {
             resetErrors("password");
@@ -174,7 +177,7 @@ const SignUpForm: FC<SignUpFormPropsInterface> = ({ setLoading }) => {
         variant="outlined"
         value={reenteredPassword}
         autoComplete="off"
-        placeholder="Confirm the Password..."
+        placeholder={t("signUpForm.confirmThePassword")}
         onChange={e => {
           resetErrors("reenteredPassword");
           setReenteredPassword(e.target.value);
@@ -204,15 +207,15 @@ const SignUpForm: FC<SignUpFormPropsInterface> = ({ setLoading }) => {
         variant="contained"
         disabled={isSubmitButtonDisabled}
       >
-        Continue
+        {t("signUpForm.continue")}
       </Button>
       <p className="prompt">
-        Already have an Account?&nbsp;
+        {t("signUpForm.alreadyHaveAnAccount")}&nbsp;
         <Link
           onClick={() => setIsLogInDialogOpen(true)}
           underline="hover"
         >
-          Log in.
+          {t("signUpForm.logIn")}
         </Link>
       </p>
     </form >

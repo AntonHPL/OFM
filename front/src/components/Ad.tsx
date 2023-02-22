@@ -7,8 +7,11 @@ import FirstMessageDialog from "./FirstMessageDialog";
 import ImageSlider from "./ImageSlider";
 import { Backdrop, Button, Typography, Skeleton, Link, Paper, Alert, CircularProgress } from "@mui/material";
 import { AccountCircle } from "@mui/icons-material";
+import { useTranslation } from 'react-i18next';
+import '../i18n';
 
 const Ad = () => {
+  const { t }: { t: (value: string) => string } = useTranslation();
   const params = useParams();
   const { user } = useContext(UserContext);
   const paramsId: string = params.id || "";
@@ -83,7 +86,7 @@ const Ad = () => {
         onClick={() => startConversation()}
         className="write-to-the-seller-button"
       >
-        Write to the Seller
+        {t("ad.writeToTheSeller")}
       </Button>
     )
   };
@@ -114,21 +117,21 @@ const Ad = () => {
       <ImageSlider ad={ad} />
       <div className="aside">
         {ad ?
-          <Paper>
+          <Paper sx={{ backgroundColor: "secondary.light" }}>
             <Typography variant="h5">
-              {ad.textInfo.price ? `$${ad.textInfo.price}` : "For free"}
+              {ad.textInfo.price ? `$${ad.textInfo.price}` : t("ad.forFree")}
             </Typography>
             <Typography variant="h5">
               {ad.textInfo.title}
             </Typography>
             <br />
             <Typography variant="body2">
-              Located in {ad.textInfo.region}, {ad.textInfo.city}.
+              {t("ad.locatedIn")} {ad.textInfo.region}, {ad.textInfo.city}.
             </Typography>
             <Typography variant="body2">
-              Created on&nbsp;
+              {t("ad.createdOn")}&nbsp;
               {ad.creationDate &&
-                new Date(ad.creationDate).toLocaleDateString("en-US", {
+                new Date(ad.creationDate).toLocaleDateString(t("ad.locales"), {
                   day: "numeric",
                   month: "long",
                   year: "numeric",
@@ -140,9 +143,9 @@ const Ad = () => {
           skeleton("aside-top")
         }
         {seller ?
-          <Paper>
+          <Paper sx={{ backgroundColor: "secondary.light" }}>
             <Typography variant="h6">
-              About Seller
+              {t("ad.aboutSeller")}
             </Typography>
             <div className="seller-info">
               <div className="account">
@@ -157,7 +160,7 @@ const Ad = () => {
                 </Typography>
               </div>
               <Typography variant="body2">
-                On Online Farmer's Market: since {
+                {t("ad.onOnlineFarmersMarketSince")} {
                   new Date(seller.registrationDate).toLocaleDateString("en-US", {
                     day: "numeric",
                     month: "long",
@@ -171,18 +174,18 @@ const Ad = () => {
           skeleton("aside-bottom")
         }
         {isAdMine &&
-          <Alert severity="info" className="alert">
-            That is your Ad. You can&nbsp;
+          <Alert severity="info" className="alert" sx={{ backgroundColor: "secondary.light" }}>
+            {t("ad.thatIsYourAdYouCan")}&nbsp;
             <Link color="error" underline="hover" onClick={deleteAd}>
-              delete it
-            </Link> any time.
+              {t("ad.deleteIt")}
+            </Link> {t("ad.anyTime")}
           </Alert>
         }
       </div>
       {ad ?
-        <Paper className="description">
+        <Paper className="description" sx={{ backgroundColor: "secondary.light" }}>
           <Typography variant="h6">
-            Description
+            {t("ad.description")}
           </Typography>
           <Typography variant="body1">
             {ad?.textInfo.description}
@@ -192,16 +195,16 @@ const Ad = () => {
       }
       {!isAdMine && (
         seller ?
-          <Paper className="questions">
+          <Paper className="questions" sx={{ backgroundColor: "secondary.light" }}>
             <Typography variant="h6">
-              Interested?
+              {t("ad.interested")}
             </Typography>
             <Typography variant="body1">
-              Ask the Seller one of the Questions proposed...
+              {t("ad.askTheSellerOneOfTheQuestionsProposed")}
             </Typography>
-            {quickMessageButtons(["Not sold yet?", "How to pick up the goods?", "Is the price negotiable?"])}
+            {quickMessageButtons([t("ad.notSoldYet"), t("ad.howToPickUpTheGoods"), t("ad.isThePriceNegotiable")])}
             <Typography variant="body1">
-              ...or write your own...
+              {t("ad.orWriteYourOwn")}
             </Typography>
             {writeToTheSellerButton()}
           </Paper> :

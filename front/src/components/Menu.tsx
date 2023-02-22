@@ -9,8 +9,11 @@ import {
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import axios from "axios";
 import { MenuPropsInterface, DataMenuInterface, MenuInterface } from '../types';
+import { useTranslation } from 'react-i18next';
+import '../i18n';
 
 const Menu: FC<MenuPropsInterface> = ({ getAdsProps, setSubString, setCategory, setSubCategory }) => {
+  const { t } = useTranslation();
   const [stableItems, setStableItems] = useState<Array<MenuInterface>>([]);
   const [listItems, setListItems] = useState<Array<MenuInterface>>([]);
   const [menuLoading, setMenuLoading] = useState(false);
@@ -20,7 +23,7 @@ const Menu: FC<MenuPropsInterface> = ({ getAdsProps, setSubString, setCategory, 
   useEffect(() => {
     setMenuLoading(true);
     axios
-      .get("/api/menu")
+      .get(t("menu.apiMenu"))
       .then(({ data }) => {
         const items = data.map((e: DataMenuInterface): MenuInterface => {
           return {

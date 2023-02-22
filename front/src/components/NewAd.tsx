@@ -1,12 +1,15 @@
 import axios from 'axios';
 import { useEffect, useState, useContext, FC } from 'react';
 import { UserContext } from "./UserContext";
-import { Typography } from '@mui/material';
+import { Paper, Typography } from '@mui/material';
 import { EmptyAdInterface, ImageInterface } from '../types';
 import ImagesCard from './ImagesCard';
 import NewAdForm from './NewAdForm';
+import { useTranslation } from 'react-i18next';
+import '../i18n';
 
 const NewAd: FC = () => {
+  const { t } = useTranslation();
   const { user } = useContext(UserContext);
   const emptyAd: EmptyAdInterface = {
     title: "",
@@ -27,14 +30,14 @@ const NewAd: FC = () => {
   const [adIsCreated, setAdIsCreated] = useState(false);
   const [mainPictureId, setMainPictureId] = useState("");
 
-  console.log(`
-    The ads posted on the Flea Market are to be written in English only and contain:
-      – the ad title and the specific product(s) description. The description is to be complete and reliable, should not contain the contact details of the seller and links to the third-party resources. It is not allowed to advertise dissimilar products in one ad. The ad title should not contain prices, links to the third-party resources and any contact information;
-      – the reliable price of the product(s). At the same time, it is to be indicated in USD in the “Price” field;
-      – the reliable information about the seller;
-      – the reliable information about the product(s) condition;
-      –  the reliable contact information that includes the e-mail. The e-mail is indicated in a special field while registering a profile. It is not allowed to indicate the e-mail in the ad text.
-    `);
+  // console.log(`
+  //   The ads posted on the Flea Market are to be written in English only and contain:
+  //     – the ad title and the specific product(s) description. The description is to be complete and reliable, should not contain the contact details of the seller and links to the third-party resources. It is not allowed to advertise dissimilar products in one ad. The ad title should not contain prices, links to the third-party resources and any contact information;
+  //     – the reliable price of the product(s). At the same time, it is to be indicated in USD in the “Price” field;
+  //     – the reliable information about the seller;
+  //     – the reliable information about the product(s) condition;
+  //     –  the reliable contact information that includes the e-mail. The e-mail is indicated in a special field while registering a profile. It is not allowed to indicate the e-mail in the ad text.
+  //   `);
 
   const deleteUnsavedAd = (): void => {
     axios.delete(`/api/unsaved_ad/${creationDate}`);
@@ -54,9 +57,9 @@ const NewAd: FC = () => {
   };
 
   return (
-    <div className="new-ad-container">
+    <Paper className="new-ad-container" sx={{ backgroundColor: "secondary.light" }}>
       <Typography variant="h4">
-        Create a new Ad
+        {t("newAd.createANewAd")}
       </Typography>
       <ImagesCard
         adIsCreated={adIsCreated}
@@ -77,7 +80,7 @@ const NewAd: FC = () => {
         mainPictureId={mainPictureId}
         emptyAd={emptyAd}
       />
-      {/* <Card className="info-card">
+      {/* <Card className="info-card" sx={{ backgroundColor: "secondary.light" }}>
         <CardActions>
           Attention!
         </CardActions>
@@ -90,7 +93,7 @@ const NewAd: FC = () => {
           </Typography>
         </CardContent>
       </Card> */}
-    </div>
+    </Paper>
   );
 };
 

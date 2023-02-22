@@ -1,0 +1,163 @@
+{
+  "accountDialog": {
+    "logIn": "Log in",
+    "createAnAccount": "Create an Account"
+  },
+  "ad": {
+    "writeToTheSeller": "Write to the Seller",
+    "forFree": "For free",
+    "locatedIn": "Located in",
+    "createdOn": "Created on",
+    "locales": "en-US",
+    "aboutSeller": "About Seller",
+    "onOnlineFarmersMarketSince": "On Online Farmer's Market: since",
+    "thatIsYourAdYouCan": "That is your Ad. You can",
+    "deleteIt": "delete it",
+    "anyTime": "any time.",
+    "description": "Description",
+    "interested": "Interested?",
+    "askTheSellerOneOfTheQuestionsProposed": "Ask the Seller one of the Questions proposed...",
+    "orWriteYourOwn": "...or write your own...",
+    "notSoldYet": "Not sold yet?",
+    "howToPickUpTheGoods": "How to pick up the goods?",
+    "isThePriceNegotiable": "Is the price negotiable?"
+  },
+  "adCard": {
+    "forFree": "For free",
+    "by": "By",
+    "from": "from",
+    "learnMore": "Learn more..."
+  },
+  "ads": {
+    "priceLowestFirst": "Price: lowest first",
+    "priceHighestFirst": "Price: highest first",
+    "dateNeswestFirst": "Date: newest first",
+    "dateOldestFirst": "Date: oldest first",
+    "sorting": "Sorting",
+    "search": "Search...",
+    "ad": "ads",
+    "ads": "ads",
+    "found": "found",
+    "nothingWasFoundTryToChangeTheSearchCriteria": "Nothing was found. Try to change the Search Criteria."
+  },
+  "captcha": {
+    "enterTheCaptcha": "Enter the Captcha..."
+  },
+  "chatDeletionDialog": {
+    "areYouSureYouWantToDeleteThisDialog": "Are you sure you want to delete this Dialog?",
+    "pleaseKeepInMindThatTheDialogWillBeDeletedForYourInterlocutorAsWell": "Please keep in mind that the Dialog will be deleted for your Interlocutor as well.",
+    "cancel": "Cancel",
+    "ok": "OK"
+  },
+  "chats": {
+    "locales": "en-US",
+    "enterYourMessage": "Enter your Message",
+    "chooseTheChat": "Choose the Chat...",
+    "noChats": "No Chats..."
+  },
+  "confirmationDialog": {
+    "pleaseConfirmTheAction": "Please confirm the Action.",
+    "doYouWantToSetThisImageAsYourProfilePicture": "Do you want to set this Image as your Profile Picture?",
+    "no": "No",
+    "yes": "Yes"
+  },
+  "firstMessageDialog": {
+    "enterYourMessage": "Enter your Message",
+    "quit": "Quit",
+    "send": "Send"
+  },
+  "generalInfo": {
+    "locales": "en-US",
+    "email": "Email:",
+    "myAds": "My Ads",
+    "myChats": "My Chats"
+  },
+  "header": {
+    "myProfile": "My Profile",
+    "myAds": "My Ads",
+    "myChats": "My Chats",
+    "logOut": "Log out"
+  },
+  "imagesCard": {
+    "photos": "Photos",
+    "clickToAddPhotos": "Click to add photos...",
+    "orDropThemHere": "...or drop them here.",
+    "clickToMakeThePictureTheMainOne": "Click to make the picture the main one.",
+    "youHaveTriedToAddTooManyPicturesThatExceedsTheLimit.": "You have tried to add too many (4+) pictures. That exceeds the limit."
+  },
+  "interlocutors": {
+    "deletedAd": "(Deleted Ad.)",
+    "you": "You:"
+  },
+  "logInForm": {
+    "theEmailFieldIsEmpty": "The Email Field is empty.",
+    "thePasswordFieldIsEmpty": "The Password Field is empty.",
+    "enterYourEmail": "Enter your Email...",
+    "enterYourPassword": "Enter your Password...",
+    "rememberFor7Days": "Remember for 7 days.",
+    "continue": "Continue",
+    "dontHaveAnAccountYet": "Don't have an Account yet?",
+    "signUp": "Sign up."
+  },
+  "menu": {
+    "apiMenu": "/api/menu"
+  },
+  "newAd": {
+    "createANewAd": "Create a new Ad"
+  },
+  "newAdForm": {
+    "apiMenu": "/api/menu",
+    "apiRegions": "/api/regions",
+    "thePriceFieldIsEmpty": "The Price Field is empty.",
+    "theMinimumPriceIs001USD": "The Minimum Price is 0.01 USD.",
+    "theTitleFieldIsEmpty": "The Title Field is empty.",
+    "theCategoryIsNotChosen": "The Category is not chosen.",
+    "theSubCategoryIsNotChosen": "The SubCategory is not chosen.",
+    "theDescriptionFieldIsEmpty": "The Description Field is empty.",
+    "theRegionIsNotChosen": "The Region is not chosen.",
+    "theCityIsNotChosen": "The City is not chosen.",
+    "productTitle": "Product Title",
+    "exampleDeliciosMilk": "Example: Delicious Milk.",
+    "category": "Category",
+    "exampleDairyProducts": "Example: Dairy Products.",
+    "subCategory": "SubCategory",
+    "exampleMilk&Cream": "Example: Milk & Cream.",
+    "description": "Description",
+    "exampleFreshMilkFromOldMcDonaldsFarm": "Example: Fresh milk from old McDonald's farm.",
+    "priceUSD": "Price (USD)",
+    "example10": "Example: 10.",
+    "forFree": "For free",
+    "region": "Region",
+    "exampleIndiana": "Example: Indiana.",
+    "city": "City",
+    "exampleIndianopolis": "Example: Indianopolis.",
+    "name": "Name",
+    "email": "Email",
+    "save&Place": "Save & place"
+  },
+  "profile": {
+    "myProfile": "My Profile"
+  },
+  "signUpForm": {
+    "theNameFieldIsEmpty": "The Name Field is empty.",
+    "theEmailFieldIsEmpty": "The Email Field is empty.",
+    "thePasswordFieldIsEmpty": "The Password Field is empty.",
+    "thePasswordIsNotValid": "The password is not valid.",
+    "thePasswordsDoNotMatch": "The Passwords do not match.",
+    "theCaptchaFieldIsEmpty": "The Captcha Field is empty.",
+    "inCorrectValueTryAgain": "Incorrect value. Try again.",
+    "enterYourName": "Enter your Name...",
+    "enterYourEmail": "Enter your Email...",
+    "aPasswordMustContainMinimum8CharactersAtLeastOneLetterAndOneNumber": "A password must contain minimum 8 characters, at least one letter and one number.",
+    "createAPassword": "Create a Password...",
+    "confirmThePassword": "Confirm the Password...",
+    "continue": "Continue",
+    "alreadyHaveAnAccount": "Already have an Account?",
+    "logIn": "Log in."
+  },
+  "successDialog": {
+    "congratulations": "Congratulations!",
+    "yourAdWasSuccessfullyCreated": "Your Ad was successfully created!",
+    "ok": "OK"
+  }
+}

@@ -8,8 +8,11 @@ import {
   Dialog,
 } from "@mui/material";
 import { DialogInterface } from "../types";
+import { useTranslation } from 'react-i18next';
+import '../i18n';
 
 const SuccessDialog: FC<DialogInterface> = ({ open, closeDialog }) => {
+  const { t } = useTranslation();
   return (
     <Dialog
       open={open}
@@ -19,16 +22,16 @@ const SuccessDialog: FC<DialogInterface> = ({ open, closeDialog }) => {
       className="success-dialog"
     >
       <DialogTitle>
-        Congratulations!
+        {t("successDialog.congratulations")}
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-slide-description">
-          Your Ad was successfully created!
+          {t("successDialog.yourAdWasSuccessfullyCreated")}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button onClick={closeDialog}>
-          OK
+          {t("successDialog.ok")}
         </Button>
       </DialogActions>
     </Dialog>

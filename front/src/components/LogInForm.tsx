@@ -4,8 +4,11 @@ import axios from "axios";
 import { UserContext } from './UserContext';
 import { LogInFormPropsInterface, LogInFormInputsInterface, ErrorInterface } from "../types";
 import { errorFound, resetErrors } from "../functions/functions";
+import { useTranslation } from 'react-i18next';
+import '../i18n';
 
 const LogInForm: FC<LogInFormPropsInterface> = ({ isOpen, setIsSignUpDialogOpen, setLoading }) => {
+  const { t }: { t: (value: string) => string } = useTranslation();
   const emptyInputs: LogInFormInputsInterface = {
     email: "",
     password: "",
@@ -32,8 +35,8 @@ const LogInForm: FC<LogInFormPropsInterface> = ({ isOpen, setIsSignUpDialogOpen,
     Object.entries(inputs).map(([key, value]) => {
       if (!value) {
         switch (key) {
-          case "email": errorText = "The Email Field is empty."; break;
-          case "password": errorText = "The Password Field is empty."; break;
+          case "email": errorText = t("logInForm.theEmailFieldIsEmpty"); break;
+          case "password": errorText = t("logInForm.thePasswordFieldIsEmpty"); break;
         };
         errorsData.push({ field: key, errorText: errorText });
       };
@@ -76,7 +79,7 @@ const LogInForm: FC<LogInFormPropsInterface> = ({ isOpen, setIsSignUpDialogOpen,
         variant="outlined"
         value={inputs.email}
         autoComplete="off"
-        placeholder="Enter your Email..."
+        placeholder={t("logInForm.enterYourEmail")}
         helperText={EF("email")?.errorText || ""}
         onChange={e => {
           authorizationError && setAuthorizationError("");
@@ -92,7 +95,7 @@ const LogInForm: FC<LogInFormPropsInterface> = ({ isOpen, setIsSignUpDialogOpen,
         variant="outlined"
         value={inputs.password}
         autoComplete="off"
-        placeholder="Enter your Password..."
+        placeholder={t("logInForm.enterYourPassword")}
         helperText={EF("password")?.errorText || ""}
         onChange={e => {
           authorizationError && setAuthorizationError("");
@@ -103,7 +106,7 @@ const LogInForm: FC<LogInFormPropsInterface> = ({ isOpen, setIsSignUpDialogOpen,
       />
       <FormControlLabel
         control={<Checkbox checked={checked} />}
-        label="Remember for 7 days."
+        label={t("logInForm.rememberFor7Days")}
         onChange={handleCookieAge}
         className="form-control-label"
       />
@@ -119,15 +122,15 @@ const LogInForm: FC<LogInFormPropsInterface> = ({ isOpen, setIsSignUpDialogOpen,
         type="submit"
         variant="contained"
       >
-        Continue
+        {t("logInForm.continue")}
       </Button>
       <p className="prompt">
-        Don't have an Account yet?&nbsp;
+        {t("logInForm.dontHaveAnAccountYet")}&nbsp;
         <Link
           onClick={() => setIsSignUpDialogOpen(true)}
           underline="hover"
         >
-          Sign up.
+          {t("logInForm.signUp")}
         </Link>
       </p>
     </form>
