@@ -7,7 +7,7 @@ import axios from "axios";
 import { useTranslation } from 'react-i18next';
 import '../i18n';
 
-const SignUpForm: FC<SignUpFormPropsInterface> = ({ setLoading }) => {
+const SignUpForm: FC<SignUpFormPropsInterface> = ({ setLoading, setIsOpen, message, setMessage }) => {
   const { t }: { t: (value: string) => string } = useTranslation();
   const emptyInputs: SignUpFormInputsInterface = {
     name: "",
@@ -105,7 +105,10 @@ const SignUpForm: FC<SignUpFormPropsInterface> = ({ setLoading }) => {
           email: inputs.email,
           password: inputs.password,
         })
-        .then(() => setLoading(false))
+        .then(({ data }) => {
+          setMessage(data);
+          setLoading(false);
+        })
         .catch(error => {
           setSignUpError(error.response.data);
           setIsSubmitButtonDisabled(true);
@@ -115,110 +118,116 @@ const SignUpForm: FC<SignUpFormPropsInterface> = ({ setLoading }) => {
   };
 
   return (
-    <form
-      onSubmit={onSubmit}
-      encType="multipart/form-data"
-      className="sign-up-form"
-    >
-      <TextField
-        error={!!errorFound("name")}
-        type="text"
-        size="small"
-        variant="outlined"
-        value={inputs.name}
-        autoComplete="off"
-        placeholder={t("signUpForm.enterYourName")}
-        helperText={errorFound("name")?.errorText || ""}
-        onChange={e => {
-          resetErrors("name");
-          setInputs({ ...inputs, name: e.target.value });
-        }}
-        className="form-row"
-      />
-      <TextField
-        error={!!errorFound("email")}
-        type="email"
-        size="small"
-        variant="outlined"
-        value={inputs.email}
-        autoComplete="off"
-        placeholder={t("signUpForm.enterYourEmail")}
-        helperText={errorFound("email")?.errorText || ""}
-        onChange={e => {
-          resetErrors("email");
-          setInputs({ ...inputs, email: e.target.value });
-          if (signUpError) {
-            setIsSubmitButtonDisabled(false);
-            setSignUpError("");
-          }
-        }}
-        className="form-row"
-      />
-      <Tooltip title={t("signUpForm.aPasswordMustContainMinimum8CharactersAtLeastOneLetterAndOneNumber")}>
+    message ? (
+      <Alert color="success">
+        {message}
+      </Alert>
+    ) : (
+      <form
+        onSubmit={onSubmit}
+        encType="multipart/form-data"
+        className="sign-up-form"
+      >
         <TextField
-          error={!!errorFound("password")}
-          type="password"
+          error={!!errorFound("name")}
+          type="text"
           size="small"
           variant="outlined"
-          value={inputs.password}
+          value={inputs.name}
           autoComplete="off"
-          placeholder={t("signUpForm.createAPassword")}
-          helperText={errorFound("password")?.errorText || ""}
+          placeholder={t("signUpForm.enterYourName")}
+          helperText={errorFound("name")?.errorText || ""}
           onChange={e => {
-            resetErrors("password");
-            setInputs({ ...inputs, password: e.target.value });
+            resetErrors("name");
+            setInputs({ ...inputs, name: e.target.value });
           }}
           className="form-row"
         />
-      </Tooltip>
-      <TextField
-        type="password"
-        size="small"
-        variant="outlined"
-        value={reenteredPassword}
-        autoComplete="off"
-        placeholder={t("signUpForm.confirmThePassword")}
-        onChange={e => {
-          resetErrors("reenteredPassword");
-          setReenteredPassword(e.target.value);
-        }}
-        error={!!errorFound("reenteredPassword")}
-        helperText={errorFound("reenteredPassword")?.errorText || ""}
-        className="form-row"
-      />
-      <Captcha
-        captchaEntered={captchaEntered}
-        setCaptchaEntered={setCaptchaEntered}
-        setCaptchaCreated={setCaptchaCreated}
-        errorFound={errorFound}
-        resetErrors={resetErrors}
-        captchaReload={captchaReload}
-      />
-      {signUpError &&
-        <Alert
-          severity="error"
-          className="alert"
+        <TextField
+          error={!!errorFound("email")}
+          type="email"
+          size="small"
+          variant="outlined"
+          value={inputs.email}
+          autoComplete="off"
+          placeholder={t("signUpForm.enterYourEmail")}
+          helperText={errorFound("email")?.errorText || ""}
+          onChange={e => {
+            resetErrors("email");
+            setInputs({ ...inputs, email: e.target.value });
+            if (signUpError) {
+              setIsSubmitButtonDisabled(false);
+              setSignUpError("");
+            }
+          }}
+          className="form-row"
+        />
+        <Tooltip title={t("signUpForm.aPasswordMustContainMinimum8CharactersAtLeastOneLetterAndOneNumber")}>
+          <TextField
+            error={!!errorFound("password")}
+            type="password"
+            size="small"
+            variant="outlined"
+            value={inputs.password}
+            autoComplete="off"
+            placeholder={t("signUpForm.createAPassword")}
+            helperText={errorFound("password")?.errorText || ""}
+            onChange={e => {
+              resetErrors("password");
+              setInputs({ ...inputs, password: e.target.value });
+            }}
+            className="form-row"
+          />
+        </Tooltip>
+        <TextField
+          type="password"
+          size="small"
+          variant="outlined"
+          value={reenteredPassword}
+          autoComplete="off"
+          placeholder={t("signUpForm.confirmThePassword")}
+          onChange={e => {
+            resetErrors("reenteredPassword");
+            setReenteredPassword(e.target.value);
+          }}
+          error={!!errorFound("reenteredPassword")}
+          helperText={errorFound("reenteredPassword")?.errorText || ""}
+          className="form-row"
+        />
+        <Captcha
+          captchaEntered={captchaEntered}
+          setCaptchaEntered={setCaptchaEntered}
+          setCaptchaCreated={setCaptchaCreated}
+          errorFound={errorFound}
+          resetErrors={resetErrors}
+          captchaReload={captchaReload}
+        />
+        {signUpError &&
+          <Alert
+            severity="error"
+            className="alert"
+          >
+            {signUpError}
+          </Alert>
+        }
+        <Button
+          type="submit"
+          variant="contained"
+          disabled={isSubmitButtonDisabled}
         >
-          {signUpError}
-        </Alert>
-      }
-      <Button
-        type="submit"
-        variant="contained"
-        disabled={isSubmitButtonDisabled}
-      >
-        {t("signUpForm.continue")}
-      </Button>
-      <p className="prompt">
-        {t("signUpForm.alreadyHaveAnAccount")}&nbsp;
-        <Link
-          onClick={() => setIsLogInDialogOpen(true)}
-          underline="hover"
-        >
-          {t("signUpForm.logIn")}
-        </Link>
-      </p>
-    </form >
+          {t("signUpForm.continue")}
+        </Button>
+        <p className="prompt">
+          {t("signUpForm.alreadyHaveAnAccount")}&nbsp;
+          <Link
+            onClick={() => setIsLogInDialogOpen(true)}
+            underline="hover"
+          >
+            {t("signUpForm.logIn")}
+          </Link>
+        </p>
+      </form>
+    )
   );
 };
 

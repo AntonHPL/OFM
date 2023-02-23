@@ -46,6 +46,7 @@ const AdCard: FC<AdCardPropsInterface> = ({ ad }) => {
             component="div"
             onClick={() => renderParticularAd(ad._id)}
             className="product-title"
+            sx={{ "&:hover": { color: "primary.main" } }}
           >
             {ad.textInfo.title}
           </Typography>

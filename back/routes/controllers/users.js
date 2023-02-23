@@ -45,7 +45,7 @@ const signUp = async (req, res) => {
     })
     .then(() => user.save())
     .then(() => sendMail(user))
-    .then(() => res.json("Ok"))
+    .then(data => res.json(data))
     .catch(error => {
       error.name === "MongoServerError" ?
         res.status(422).send("The Email is already registered.") :
@@ -73,7 +73,7 @@ const sendMail = user => {
       <p style="font-size: 1.5em">
         Thank you for joining OFM!
         <br />
-        Please <a href="https://ofm-api.vercel.app/api/verify-email?token=${user.emailToken}">verify</a> your email address.
+        Please <a href="http://localhost:3000/verify-email/${user.emailToken}">verify</a> your email address.
       </p>
       <p style="font-size: 1em">
         This is an automatic email, no reply is required.
@@ -87,34 +87,36 @@ const sendMail = user => {
         console.error(error);
         reject(error);
       } else {
-        console.log(`Verification email was sent to ${user.email}`);
-        resolve(info)
+        resolve(`Verification email was sent to ${user.email}`);
+        console.log(info);
       }
     })
   });
 }
 
 const verifyEmail = (req, res) => {
-  const token = req.query.token;
+  const token = req.params.token;
+  console.log("token", token)
   User
     .findOne({ emailToken: token })
     .then(user => {
       user.emailToken = null;
       user.isVerified = true;
-      return user.save();
+      res.status(200).send({ message: "ok" })
+      user.save();
     })
-    .then(() => res.redirect("https://ofm-app.vercel.app/email-is-verified"))
-    .catch(error => console.error(error))
+    .catch(error => res.status(500).send(error))
 };
 
 const logIn = (req, res) => {
   const { email, password, cookieAge } = req.body;
-  const throwError = (res) => res.status(500).send({ message: "The credentials are incorrect. Please try again." });
+  const message = "The credentials are incorrect. Please try again.";
   let userFound;
   User
     .findOne({ email: email })
     .then(user => {
       userFound = user;
+      if (!userFound.isVerified) throw new Error("The Email is not verified. Please verify your Email and try again.");
       return bcrypt.compare(password, user.password);
     })
     .then(passwordValidation => {
@@ -123,11 +125,9 @@ const logIn = (req, res) => {
         // console.log("token:", token);
         res.cookie("access-token", token, { maxAge: cookieAge });
         res.json(true);
-      } else {
-        throwError(res);
-      }
+      } else throw new Error(message);
     })
-    .catch(() => throwError(res));
+    .catch(({ message }) => res.status(500).send({ message }));
 };
 
 const getUser = (req, res) => {

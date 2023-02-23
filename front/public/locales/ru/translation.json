@@ -99,14 +99,10 @@
     "dontHaveAnAccountYet": "Еще нет аккаунта?",
     "signUp": "Зарегистрироваться."
   },
-  "menu": {
-    "apiMenu": "/api/menu-ru"
-  },
   "newAd": {
     "createANewAd": "Создать новое объявление"
   },
   "newAdForm": {
-    "apiMenu": "/api/menu-ru",
     "apiRegions": "/api/regions-ru",
     "thePriceFieldIsEmpty": "Поля для цены пустое.",
     "theMinimumPriceIs001USD": "Минимальная цена составляет 0.01 USD.",

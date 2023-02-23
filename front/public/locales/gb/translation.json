@@ -99,14 +99,10 @@
     "dontHaveAnAccountYet": "Don't have an Account yet?",
     "signUp": "Sign up."
   },
-  "menu": {
-    "apiMenu": "/api/menu"
-  },
   "newAd": {
     "createANewAd": "Create a new Ad"
   },
   "newAdForm": {
-    "apiMenu": "/api/menu",
     "apiRegions": "/api/regions",
     "thePriceFieldIsEmpty": "The Price Field is empty.",
     "theMinimumPriceIs001USD": "The Minimum Price is 0.01 USD.",

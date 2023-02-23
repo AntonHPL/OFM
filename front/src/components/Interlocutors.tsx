@@ -158,7 +158,7 @@ const Interlocutors: FC<InterlocutorsPropsInterface> = ({
 							return (
 								<Paper
 									className={`interlocutor ${chatId === chat._id ? "selected" : ""}`}
-									sx={chatId === chat._id ? { backgroundColor: "primary.light" } : {}}
+									sx={{ "&:hover": { backgroundColor: "primary.dark" }, backgroundColor: chatId === chat._id ? "primary.light" : "", }}
 									onClick={() => revealHistory(chat.adId)}
 								>
 									<div className="images">

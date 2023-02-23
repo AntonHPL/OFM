@@ -100,9 +100,14 @@ export interface DataRegionInterface {
   _id: string,
 };
 
+export interface TitleInterface {
+  gb: string,
+  ru: string
+}
+
 export interface DataMenuInterface {
-  contents: Array<string>,
-  title: string,
+  contents: { gb: Array<string>, ru: Array<string> },
+  title: TitleInterface,
   _id: string,
 };
 
@@ -221,9 +226,13 @@ export interface ErrorsInterface {
 
 export interface SignUpFormPropsInterface {
   setLoading: (loading: boolean) => void,
+  setIsOpen: (isOpen: boolean) => void,
+  message: string,
+  setMessage: (message: string) => void,
 }
 
-export interface LogInFormPropsInterface extends SignUpFormPropsInterface {
+export interface LogInFormPropsInterface {
+  setLoading: (loading: boolean) => void,
   isOpen: boolean,
   setIsSignUpDialogOpen: (isSignUpDialogOpen: boolean) => void,
 }
@@ -257,14 +266,14 @@ export interface ChatDeletionDialogPropsInterface {
 
 export interface InterlocutorsPropsInterface {
   myId: string,
-	chats: Array<ModifiedChatInterface> | null,
-	setChats: (chats: Array<ModifiedChatInterface> | null) => void,
-	newMessage: MessageInterface | null,
-	setNewMessage: (newMessage: MessageInterface | null) => void,
-	chatId: string,
-	setChatId: (chatId: string) => void,
-	setOldMessages: (oldMessages: Array<MessageInterface> | null) => void,
-	setIsChatChosen: (isChatChosen: boolean) => void,
+  chats: Array<ModifiedChatInterface> | null,
+  setChats: (chats: Array<ModifiedChatInterface> | null) => void,
+  newMessage: MessageInterface | null,
+  setNewMessage: (newMessage: MessageInterface | null) => void,
+  chatId: string,
+  setChatId: (chatId: string) => void,
+  setOldMessages: (oldMessages: Array<MessageInterface> | null) => void,
+  setIsChatChosen: (isChatChosen: boolean) => void,
   setLoading: (loading: boolean) => void,
 }
 

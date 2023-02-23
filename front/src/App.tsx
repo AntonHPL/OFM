@@ -17,16 +17,34 @@ import Profile from "./components/Profile";
 import MyAds from "./components/MyAds";
 import { UserContext } from "./components/UserContext";
 import "./App.scss";
-import { createTheme, ThemeProvider } from "@mui/material";
+import { Box, createTheme, ThemeProvider } from "@mui/material";
 import { orange } from "@mui/material/colors";
 import logoBright from "./images/logo_bright.png";
 import logoDark from "./images/logo_dark.png";
 import EmailIsVerified from "./components/EmailIsVerified";
+import { makeStyles } from "@mui/styles";
 
 const App = () => {
   const { user, isTokenValidationComplete } = useContext(UserContext);
   // const [palette, setPalette] = useState<Object>({});
   const [color, setColor] = useState<any>(orange);
+
+  const useStyles = makeStyles(() => ({
+    root: {
+      "&::-webkit-scrollbar": {
+        width: 7,
+      },
+      "&::-webkit-scrollbar-track": {
+        boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.3)`,
+      },
+      "&::-webkit-scrollbar-thumb": {
+        backgroundColor: "darkgrey",
+        outline: `1px solid slategrey`,
+      },
+    },
+  }));
+  const classes = useStyles();
+  console.log(useStyles)
 
   const createPalette = useCallback((color: any) => ({
     primary: {
@@ -52,7 +70,15 @@ const App = () => {
 
   // const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 
-  const theme = createTheme({ palette: palette });
+  const theme = createTheme({
+    components: {
+      MuiCssBaseline: {
+        styleOverrides: (themeParam) => ({
+          body: darkScrollbar(),
+        }),
+      },
+    },
+  });
 
   return (
     <ThemeProvider theme={theme}>
@@ -74,7 +100,7 @@ const App = () => {
                   <Route path="*" element={<Navigate to="/" />} />
                 </> :
                 <>
-                  <Route path="/email-is-verified" element={<EmailIsVerified />} />
+                  <Route path="/verify-email/:token" element={<EmailIsVerified />} />
                   <Route path="*" element={<Navigate to="/" />} />
                 </>
               }

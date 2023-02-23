@@ -12,6 +12,8 @@ const AccountDialog: FC = () => {
   const [loading, setLoading] = useState(false);
   const [isSignUpDialogOpen, setIsSignUpDialogOpen] = useState(false);
 
+  const [message, setMessage] = useState("");
+
   useEffect(() => {
     isSignUpDialogOpen && setIsLogInDialogOpen(false);
   }, [isSignUpDialogOpen]);
@@ -22,7 +24,8 @@ const AccountDialog: FC = () => {
 
   const closeDialog = (): void => {
     isLogInDialogOpen && setIsLogInDialogOpen(false);
-    isSignUpDialogOpen && setIsSignUpDialogOpen(false)
+    isSignUpDialogOpen && setIsSignUpDialogOpen(false);
+    setMessage("");
   };
 
   return (
@@ -32,17 +35,24 @@ const AccountDialog: FC = () => {
       onClose={closeDialog}
       className="account-dialog"
     >
-      <DialogTitle>
-        {isLogInDialogOpen ? t("accountDialog.logIn") : t("accountDialog.createAnAccount")}
-      </DialogTitle>
-      <DialogContent className="dialog-content">
+      {!message && (
+        <DialogTitle>
+          {isLogInDialogOpen ? t("accountDialog.logIn") : t("accountDialog.createAnAccount")}
+        </DialogTitle>
+      )}
+      <DialogContent className={`dialog-content ${message ? "no-padding" : ""}`}>
         {isLogInDialogOpen ?
           <LogInForm
             isOpen={isLogInDialogOpen}
             setIsSignUpDialogOpen={setIsSignUpDialogOpen}
             setLoading={setLoading}
           /> :
-          <SignUpForm setLoading={setLoading} />
+          <SignUpForm
+            setLoading={setLoading}
+            setIsOpen={setIsSignUpDialogOpen}
+            message={message}
+            setMessage={setMessage}
+          />
         }
       </DialogContent>
       <Backdrop

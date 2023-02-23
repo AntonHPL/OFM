@@ -8,42 +8,51 @@ import {
 } from "@mui/material";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import axios from "axios";
-import { MenuPropsInterface, DataMenuInterface, MenuInterface } from '../types';
+import { MenuPropsInterface, DataMenuInterface, MenuInterface, TitleInterface } from '../types';
 import { useTranslation } from 'react-i18next';
+import i18next from "i18next";
 import '../i18n';
 
 const Menu: FC<MenuPropsInterface> = ({ getAdsProps, setSubString, setCategory, setSubCategory }) => {
-  const { t } = useTranslation();
   const [stableItems, setStableItems] = useState<Array<MenuInterface>>([]);
   const [listItems, setListItems] = useState<Array<MenuInterface>>([]);
   const [menuLoading, setMenuLoading] = useState(false);
+  const [currentLang, setCurrentLang] = useState(i18next.language);
+  const [itemsData, setItemsData] = useState<Array<DataMenuInterface>>([]);
 
   const { subString, category, subCategory } = getAdsProps.functionProps;
+
+  i18next.on("languageChanged", () => setCurrentLang(i18next.language));
 
   useEffect(() => {
     setMenuLoading(true);
     axios
-      .get(t("menu.apiMenu"))
+      .get("/api/menu")
       .then(({ data }) => {
-        const items = data.map((e: DataMenuInterface): MenuInterface => {
-          return {
-            ...e,
-            contents: e.contents.map(el => {
-              return {
-                text: el,
-                selected: false,
-              };
-            }),
-            open: false,
-            selected: false,
-          };
-        });
-        setListItems(items);
-        setStableItems(items);
-        setMenuLoading(false);
+        setItemsData(data);
       })
       .catch(error => console.error("The error occured: ", error.message));
   }, []);
+
+  useEffect(() => {
+    const items = itemsData.map((e: DataMenuInterface): MenuInterface => {
+      return {
+        ...e,
+        title: e.title[currentLang as keyof TitleInterface],
+        contents: e.contents[currentLang as keyof TitleInterface].map(el => {
+          return {
+            text: el,
+            selected: false,
+          };
+        }),
+        open: false,
+        selected: false,
+      };
+    });
+    setListItems(items);
+    setStableItems(items);
+    setMenuLoading(false);
+  }, [currentLang, itemsData]);
 
   const onItemClick = (e: MouseEvent<HTMLDivElement>) => {
     subCategory && setSubCategory("");
@@ -105,11 +114,11 @@ const Menu: FC<MenuPropsInterface> = ({ getAdsProps, setSubString, setCategory, 
                   selected={li.selected}
                 >
                   <ListItemText primary={li.title} />
-                  {li.open ? <ExpandLess /> : <ExpandMore />}
+                  {li.contents.length > 0 && (li.open ? <ExpandLess /> : <ExpandMore />)}
                 </ListItemButton>
                 <Collapse in={li.open} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
-                    {li.contents.map((subItem) => {
+                    {li.contents.map(subItem => {
                       return (
                         <ListItemButton
                           sx={{ pl: 4 }}

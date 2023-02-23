@@ -34,7 +34,7 @@ export const WithUserContext: FC<{ children: ReactNode }> = ({ children }) => {
                                 setIsTokenValidationComplete(true);
                             })
                             .catch(error => console.error("The error occured: ", error.message));
-                    } else {
+                    } else if (!window.location.href.includes("verify-email")) {
                         setIsLogInDialogOpen(true);
                         setIsTokenValidationComplete(true);
                     }

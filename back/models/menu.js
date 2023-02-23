@@ -3,12 +3,24 @@ const Schema = mongoose.Schema;
 
 const menuSchema = new Schema({
   title: {
-    type: String,
-    required: true,
+    gb: {
+      type: String,
+      required: true,
+    },
+    ru: {
+      type: String,
+      required: true,
+    }
   },
   contents: {
-    type: Array,
-    required: false,
+    gb: {
+      type: Array,
+      required: true,
+    },
+    ru: {
+      type: Array,
+      required: true,
+    }
   }
 });
 
