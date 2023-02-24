@@ -1,19 +1,13 @@
 {
+  "cleanUrls": true,
+  "trailingSlash": false,
   "rewrites": [
     {
       "source": "/api/:path*",
-      "methods": [
-        "GET",
-        "POST"
-      ],
       "destination": "https://ofm-api.vercel.app/api/:path*"
     },
     {
       "source": "/api/:path*/",
-      "methods": [
-        "GET",
-        "POST"
-      ],
       "destination": "https://ofm-api.vercel.app/api/:path*/"
     }
   ]
