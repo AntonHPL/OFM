@@ -39,7 +39,8 @@ const NewAdForm: FC<NewAdFormPropsInterface> = ({
   mainPictureId,
   emptyAd,
   setImages,
-  imagesBeingUploaded
+  imagesBeingUploaded,
+  setImagesBeingUploaded
 }) => {
   const { t } = useTranslation();
   const [categories, setCategories] = useState<Array<CategoryInterface> | null>(null);
@@ -198,7 +199,8 @@ const NewAdForm: FC<NewAdFormPropsInterface> = ({
           });
       };
       setCreationDate(new Date().toISOString());
-    }
+    };
+    setImagesBeingUploaded(0);
   };
 
   return (

@@ -83,7 +83,7 @@
     "clickToAddPhotos": "Click to add photos...",
     "orDropThemHere": "...or drop them here.",
     "clickToMakeThePictureTheMainOne": "Click to make the picture the main one.",
-    "youHaveTriedToAddTooManyPicturesThatExceedsTheLimit.": "You have tried to add too many (4+) pictures. That exceeds the limit."
+    "youHaveTriedToAddTooManyPicturesThatExceedsTheLimit": "You have tried to add too many (4+) pictures. That exceeds the limit."
   },
   "interlocutors": {
     "deletedAd": "(Deleted Ad.)",

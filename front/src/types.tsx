@@ -296,6 +296,7 @@ export interface NewAdFormPropsInterface {
   setCreationDate: (creationDate: string) => void,
   setImages: (images: Array<ImageInterface> | null) => void,
   imagesBeingUploaded: number,
+  setImagesBeingUploaded: (imagesBeingUploaded: number) => void,
 }
 
 export interface ImagesCardPropsInterface {

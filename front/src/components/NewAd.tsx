@@ -82,6 +82,7 @@ const NewAd: FC = () => {
         mainPictureId={mainPictureId}
         emptyAd={emptyAd}
         imagesBeingUploaded={imagesBeingUploaded}
+        setImagesBeingUploaded={setImagesBeingUploaded}
       />
       {/* <Card className="info-card" sx={{ backgroundColor: "secondary.light" }}>
         <CardActions>
