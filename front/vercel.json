@@ -2,18 +2,10 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "methods": [
-        "GET",
-        "POST"
-      ],
       "destination": "https://ofm-api.vercel.app/api/:path*"
     },
     {
       "source": "/api/:path*/",
-      "methods": [
-        "GET",
-        "POST"
-      ],
       "destination": "https://ofm-api.vercel.app/api/:path*/"
     }
   ]
