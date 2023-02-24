@@ -9,7 +9,7 @@ const EmailIsVerified = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/api/verify-email/${params.token}`)
+      .get(`/api/verify-email/${params.token}`)
       .catch(() => navigate("/"));
   }, []);
 

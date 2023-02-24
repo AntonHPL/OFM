@@ -73,7 +73,7 @@ const sendMail = user => {
       <p style="font-size: 1.5em">
         Thank you for joining OFM!
         <br />
-        Please <a href="http://localhost:3000/verify-email/${user.emailToken}">verify</a> your email address.
+        Please <a href="https://ofm-app.vercel.app/verify-email/${user.emailToken}">verify</a> your email address.
       </p>
       <p style="font-size: 1em">
         This is an automatic email, no reply is required.
