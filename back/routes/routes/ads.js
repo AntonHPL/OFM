@@ -25,7 +25,7 @@ router.get("/api/images/:creationDate", getImages);
 router.get("/api/ad/:id", getAd);
 router.get("/api/ads/:userId", getMyAds);
 router.get("/api/ads-briefly", getAdsBriefly);
-router.post("/ad", upload.array("imagesInput", 4), postAd);
+router.post("/api/ad", upload.array("imagesInput", 4), postAd);
 router.put("/api/ad/:creationDate", finishAd);
 router.put("/api/images", upload.array("imagesInput", 4), addImages);
 router.put("/api/images/:id", deleteImage);
