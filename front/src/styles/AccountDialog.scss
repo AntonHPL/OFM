@@ -9,8 +9,8 @@
     .dialog-content {
       padding-top: 8px !important;
 
-      &.no-padding {
-        padding-top: 0 !important;
+      &.extra-padding {
+        @include indents($padding: 20px 24px !important)
       }
       form {
         @include size(100%);

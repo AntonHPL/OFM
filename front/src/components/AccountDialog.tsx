@@ -40,7 +40,7 @@ const AccountDialog: FC = () => {
           {isLogInDialogOpen ? t("accountDialog.logIn") : t("accountDialog.createAnAccount")}
         </DialogTitle>
       )}
-      <DialogContent className={`dialog-content ${message ? "no-padding" : ""}`}>
+      <DialogContent className={`dialog-content ${message ? "extra-padding" : ""}`}>
         {isLogInDialogOpen ?
           <LogInForm
             isOpen={isLogInDialogOpen}

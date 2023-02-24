@@ -23,9 +23,11 @@ import {
   CategoryInterface,
   ErrorInterface,
   NewAdFormPropsInterface,
-  RegionInterface
+  RegionInterface,
+  TitleInterface
 } from '../types';
 import { useTranslation } from 'react-i18next';
+import i18next from "i18next";
 import '../i18n';
 
 const NewAdForm: FC<NewAdFormPropsInterface> = ({
@@ -36,7 +38,8 @@ const NewAdForm: FC<NewAdFormPropsInterface> = ({
   setCreationDate,
   mainPictureId,
   emptyAd,
-  setImages
+  setImages,
+  imagesBeingUploaded
 }) => {
   const { t } = useTranslation();
   const [categories, setCategories] = useState<Array<CategoryInterface> | null>(null);
@@ -45,6 +48,10 @@ const NewAdForm: FC<NewAdFormPropsInterface> = ({
   const [errors, setErrors] = useState<Array<ErrorInterface>>([]);
   const [adUploading, setAdUploading] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [categoriesData, setCategoriesData] = useState([]);
+  const [currentLang, setCurrentLang] = useState(i18next.language);
+
+  i18next.on("languageChanged", () => setCurrentLang(i18next.language));
 
   useEffect(() => {
     if (isDialogOpen) {
@@ -98,24 +105,11 @@ const NewAdForm: FC<NewAdFormPropsInterface> = ({
 
   useEffect(() => {
     axios
-      .get(t("newAdForm.apiMenu"))
-      .then(({ data }) => {
-        setCategories(data.map((e: DataCategoryInterface): CategoryInterface => {
-          return ({
-            value: e.title,
-            label: e.title,
-            subCategories: e.contents.map(el => {
-              return ({
-                value: el,
-                label: el,
-              });
-            }),
-          });
-        }));
-      })
+      .get("/api/menu")
+      .then(({ data }) => setCategoriesData(data))
       .catch(error => console.error("The error occured: ", error.message));
     axios
-      .get(t("newAdForm.apiRegions"))
+      .get("/api/regions")
       .then(({ data }) => {
         setRegions(data.map((e: DataRegionInterface): RegionInterface => {
           return ({
@@ -132,6 +126,21 @@ const NewAdForm: FC<NewAdFormPropsInterface> = ({
       })
       .catch(error => console.error("The error occured: ", error.message));
   }, []);
+
+  useEffect(() => {
+    setCategories(categoriesData.map((e: DataCategoryInterface): CategoryInterface => {
+      return ({
+        value: e.title[currentLang as keyof TitleInterface],
+        label: e.title[currentLang as keyof TitleInterface],
+        subCategories: e.contents[currentLang as keyof TitleInterface].map(el => {
+          return ({
+            value: el,
+            label: el,
+          });
+        }),
+      });
+    }));
+  }, [categoriesData, currentLang]);
 
   const onSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
@@ -362,6 +371,7 @@ const NewAdForm: FC<NewAdFormPropsInterface> = ({
           type="submit"
           startIcon={<SaveIcon />}
           variant="contained"
+          disabled={!!imagesBeingUploaded}
         >
           {t("newAdForm.save&Place")}
         </Button>

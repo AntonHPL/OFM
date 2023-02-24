@@ -89,8 +89,8 @@ export interface ImageInterface {
 };
 
 export interface DataCategoryInterface {
-  contents: Array<string>,
-  title: string,
+  contents: { gb: Array<string>, ru: Array<string> },
+  title: TitleInterface,
   _id: string,
 };
 
@@ -295,6 +295,7 @@ export interface NewAdFormPropsInterface {
   emptyAd: EmptyAdInterface,
   setCreationDate: (creationDate: string) => void,
   setImages: (images: Array<ImageInterface> | null) => void,
+  imagesBeingUploaded: number,
 }
 
 export interface ImagesCardPropsInterface {
@@ -305,4 +306,6 @@ export interface ImagesCardPropsInterface {
   setMainPictureId: (mainPictureId: string) => void,
   images: Array<ImageInterface> | null,
   setImages: (images: Array<ImageInterface> | null) => void,
+  imagesBeingUploaded: number,
+  setImagesBeingUploaded: (imagesBeingUploaded: number) => void,
 }

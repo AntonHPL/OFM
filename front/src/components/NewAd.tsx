@@ -29,7 +29,7 @@ const NewAd: FC = () => {
   const [creationDate, setCreationDate] = useState(new Date().toISOString());
   const [adIsCreated, setAdIsCreated] = useState(false);
   const [mainPictureId, setMainPictureId] = useState("");
-
+  const [imagesBeingUploaded, setImagesBeingUploaded] = useState(0);
   // console.log(`
   //   The ads posted on the Flea Market are to be written in English only and contain:
   //     – the ad title and the specific product(s) description. The description is to be complete and reliable, should not contain the contact details of the seller and links to the third-party resources. It is not allowed to advertise dissimilar products in one ad. The ad title should not contain prices, links to the third-party resources and any contact information;
@@ -69,6 +69,8 @@ const NewAd: FC = () => {
         creationDate={creationDate}
         mainPictureId={mainPictureId}
         setMainPictureId={setMainPictureId}
+        imagesBeingUploaded={imagesBeingUploaded}
+        setImagesBeingUploaded={setImagesBeingUploaded}
       />
       <NewAdForm
         ad={ad}
@@ -79,6 +81,7 @@ const NewAd: FC = () => {
         setCreationDate={setCreationDate}
         mainPictureId={mainPictureId}
         emptyAd={emptyAd}
+        imagesBeingUploaded={imagesBeingUploaded}
       />
       {/* <Card className="info-card" sx={{ backgroundColor: "secondary.light" }}>
         <CardActions>

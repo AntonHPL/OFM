@@ -102,9 +102,9 @@ const verifyEmail = (req, res) => {
     .then(user => {
       user.emailToken = null;
       user.isVerified = true;
-      res.status(200).send({ message: "ok" })
       user.save();
     })
+    .then(() => res.status(200).send({ message: "ok" }))
     .catch(error => res.status(500).send(error))
 };
 

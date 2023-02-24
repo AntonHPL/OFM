@@ -21,11 +21,20 @@ import { ImagesCardPropsInterface } from '../types';
 import { useTranslation } from 'react-i18next';
 import '../i18n';
 
-const ImagesCard: FC<ImagesCardPropsInterface> = ({ adIsCreated, creationDate, setAdIsCreated, images, setImages, mainPictureId, setMainPictureId }) => {
+const ImagesCard: FC<ImagesCardPropsInterface> = ({
+  adIsCreated,
+  creationDate,
+  setAdIsCreated,
+  images,
+  setImages,
+  mainPictureId,
+  setMainPictureId,
+  imagesBeingUploaded,
+  setImagesBeingUploaded,
+}) => {
   const { t }: { t: (value: string) => string } = useTranslation();
   const [imagesToUpload, setImagesToUpload] = useState<FileList | null>(null);
   const [imagesUploaded, setImagesUploaded] = useState(0);
-  const [imagesBeingUploaded, setImagesBeingUploaded] = useState(0);
   const [imageBeingRemoved, setImageBeingRemoved] = useState("");
   const [imagesError, setImagesError] = useState(false);
 

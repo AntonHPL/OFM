@@ -9,7 +9,6 @@ import {
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import axios from "axios";
 import { MenuPropsInterface, DataMenuInterface, MenuInterface, TitleInterface } from '../types';
-import { useTranslation } from 'react-i18next';
 import i18next from "i18next";
 import '../i18n';
 
@@ -28,9 +27,7 @@ const Menu: FC<MenuPropsInterface> = ({ getAdsProps, setSubString, setCategory, 
     setMenuLoading(true);
     axios
       .get("/api/menu")
-      .then(({ data }) => {
-        setItemsData(data);
-      })
+      .then(({ data }) => setItemsData(data))
       .catch(error => console.error("The error occured: ", error.message));
   }, []);
 

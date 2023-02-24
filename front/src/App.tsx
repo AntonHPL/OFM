@@ -17,34 +17,17 @@ import Profile from "./components/Profile";
 import MyAds from "./components/MyAds";
 import { UserContext } from "./components/UserContext";
 import "./App.scss";
-import { Box, createTheme, ThemeProvider } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material";
 import { orange } from "@mui/material/colors";
 import logoBright from "./images/logo_bright.png";
 import logoDark from "./images/logo_dark.png";
 import EmailIsVerified from "./components/EmailIsVerified";
-import { makeStyles } from "@mui/styles";
+import GlobalStyles from "@mui/material/GlobalStyles/GlobalStyles";
 
 const App = () => {
   const { user, isTokenValidationComplete } = useContext(UserContext);
   // const [palette, setPalette] = useState<Object>({});
   const [color, setColor] = useState<any>(orange);
-
-  const useStyles = makeStyles(() => ({
-    root: {
-      "&::-webkit-scrollbar": {
-        width: 7,
-      },
-      "&::-webkit-scrollbar-track": {
-        boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.3)`,
-      },
-      "&::-webkit-scrollbar-thumb": {
-        backgroundColor: "darkgrey",
-        outline: `1px solid slategrey`,
-      },
-    },
-  }));
-  const classes = useStyles();
-  console.log(useStyles)
 
   const createPalette = useCallback((color: any) => ({
     primary: {
@@ -61,27 +44,28 @@ const App = () => {
 
   const palette = createPalette(color);
 
-  // const getDesignTokens = (mode: PaletteMode) => ({
-  //   palette: {
-  //     mode,
-  //     ...(mode === "light" ? orangePalette : indigoPalette)
-  //   }
-  // });
-
-  // const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
+  const globalStyles = {
+    "*::-webkit-scrollbar-track": {
+      backgroundColor: palette.secondary.main,
+    },
+    '*::-webkit-scrollbar-thumb': {
+      backgroundColor: palette.secondary.dark,
+      "&:hover": {
+        backgroundColor: palette.primary.light,
+      },
+      "&:active": {
+        backgroundColor: palette.primary.main,
+      }
+    },
+  };
 
   const theme = createTheme({
-    components: {
-      MuiCssBaseline: {
-        styleOverrides: (themeParam) => ({
-          body: darkScrollbar(),
-        }),
-      },
-    },
+    palette
   });
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme} >
+      <GlobalStyles styles={globalStyles} />
       <Router>
         {isTokenValidationComplete &&
           <>
@@ -108,7 +92,7 @@ const App = () => {
           </>
         }
       </Router>
-    </ThemeProvider>
+    </ThemeProvider >
   )
 }
 
