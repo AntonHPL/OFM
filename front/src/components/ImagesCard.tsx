@@ -68,7 +68,7 @@ const ImagesCard: FC<ImagesCardPropsInterface> = ({
           .catch(error => console.error("The error occured: ", error.message))
       } else {
         axios
-          .post("/ad", fd)
+          .post("/api/ad", fd)
           .then(() => {
             setImagesUploaded(prev => condition ? prev + imagesToUpload.length : prev + spaceLeft);
             setAdIsCreated(true);
