@@ -164,7 +164,7 @@ const getAd = (req, res) => {
 
 const getMyAds = (req, res) => {
   Ad
-    .find({ "textInfo.sellerId": req.params.userId }).limit(3)
+    .find({ "textInfo.sellerId": req.params.userId })
     .then(ads => res.status(200).json(ads))
     .catch(error => console.error("The error occured: ", error.message));
 };
