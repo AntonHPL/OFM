@@ -5,6 +5,7 @@ const countAds = (req, res) => {
   const subString = req.query.subString;
   const category = req.query.category;
   const subCategory = req.query.subCategory;
+  const userId = req.query.userId;
   const countOptions = {};
   if (subString) {
     countOptions["textInfo.title"] = new RegExp(subString, "gi");
@@ -15,7 +16,9 @@ const countAds = (req, res) => {
   if (subCategory) {
     countOptions["textInfo.subCategory"] = subCategory;
   };
-
+  if (userId) {
+    countOptions["textInfo.sellerId"] = userId;
+  }
   Ad
     .count(countOptions)
     .then(number => res.status(200).json(number))
@@ -163,8 +166,12 @@ const getAd = (req, res) => {
 };
 
 const getMyAds = (req, res) => {
+  const page = +req.query.page;
+  const perPage = +req.query.perPage;
+
   Ad
     .find({ "textInfo.sellerId": req.params.userId })
+    .limit(perPage).skip((page - 1) * perPage)
     .then(ads => res.status(200).json(ads))
     .catch(error => console.error("The error occured: ", error.message));
 };

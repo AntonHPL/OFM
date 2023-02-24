@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext, FC } from 'react';
 import axios from 'axios';
-import { Skeleton } from "@mui/material";
+import { Pagination, Skeleton } from "@mui/material";
 import { UserContext } from './UserContext';
 import { AdInterface } from "../types";
 import AdCard from './AdCard';
@@ -9,15 +9,36 @@ const MyAds: FC = () => {
   const { user } = useContext(UserContext);
   const [myAds, setMyAds] = useState<Array<AdInterface> | null>(null);
   const [adsLoading, setAdsLoading] = useState(false);
+  const [pageCount, setPageCount] = useState(0);
+
+  const [page, setPage] = useState(1);
+  const PER_PAGE = 3;
+
+  const changePage = (page: number): void => {
+    setPage(page);
+  };
 
   useEffect(() => {
     if (user) {
       setAdsLoading(true);
       axios
-        .get(`/api/ads/${user._id}`)
+        .get(`/api/ads/${user._id}`, {
+          params: {
+            page,
+            perPage: PER_PAGE,
+          }
+        })
         .then(({ data }) => {
           setMyAds(data);
-          setAdsLoading(false)
+          return axios.get("/api/count_ads", {
+            params: {
+              userId: user._id || undefined,
+            }
+          })
+        })
+        .then(({ data }) => {
+          setPageCount(Math.ceil(data / PER_PAGE));
+          setAdsLoading(false);
         })
         .catch(error => {
           console.error("The error occured: ", error.message);
@@ -25,28 +46,42 @@ const MyAds: FC = () => {
         })
     }
 
-  }, [user]);
+  }, [user, page]);
 
   return (
-    <div className="my-ads-container">
-      {adsLoading ?
-        function () {
-          let content = [];
-          for (let i = 0; i < 3; i++) {
-            content.push(
-              <Skeleton
-                variant="rectangular"
-                className="skeleton"
-              />
-            );
-          };
-          return content;
-        }() :
-        myAds?.map(ad => (
-          <AdCard ad={ad} />
-        ))
-      }
-    </div>
+    <>
+      <div className="my-ads-container">
+        {adsLoading ?
+          function () {
+            let content = [];
+            for (let i = 0; i < 3; i++) {
+              content.push(
+                <Skeleton
+                  variant="rectangular"
+                  className="skeleton"
+                />
+              );
+            };
+            return content;
+          }() :
+          myAds?.map(ad => (
+            <AdCard ad={ad} />
+          ))
+        }
+        {pageCount > 1 &&
+          <Pagination
+            count={pageCount}
+            defaultPage={1}
+            variant="outlined"
+            color="primary"
+            size="large"
+            onChange={(_, page) => changePage(page)}
+            page={page}
+            disabled={adsLoading}
+          />
+        }
+      </div>
+    </>
   );
 };
 

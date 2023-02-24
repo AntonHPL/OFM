@@ -4,4 +4,8 @@
     @include standard-margin-bottom();
     border-radius: 4px;
   }
+  nav {
+    @include flex-center();
+    @include indents(16px 0 0, 0 !important);
+  }
 }
