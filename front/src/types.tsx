@@ -31,8 +31,8 @@ export interface GetAdsPropsInterface {
     PER_PAGE: number,
     sortingParams: Array<string> | null,
     subString: string,
-    category?: string,
-    subCategory?: string,
+    categoryId?: string,
+    subCategoryId?: string,
   },
   setAds: (ads: Array<AdInterface>) => void,
   setPageCount: (pageCount: number) => void,
@@ -43,8 +43,8 @@ export interface GetAdsPropsInterface {
 export interface MenuPropsInterface {
   getAdsProps: GetAdsPropsInterface,
   setSubString: (subString: string) => void,
-  setCategory: (category: string) => void,
-  setSubCategory: (subCategory: string) => void,
+  setCategoryId: (categoryId: string) => void,
+  setSubCategoryId: (subCategoryId: string) => void,
 };
 
 export interface EmptyAdInterface {
@@ -112,6 +112,7 @@ export interface DataMenuInterface {
 };
 
 interface ContentsInterface {
+  _id: string,
   text: string,
   selected: boolean,
 };

@@ -12,14 +12,14 @@ import { MenuPropsInterface, DataMenuInterface, MenuInterface, TitleInterface } 
 import i18next from "i18next";
 import '../i18n';
 
-const Menu: FC<MenuPropsInterface> = ({ getAdsProps, setSubString, setCategory, setSubCategory }) => {
+const Menu: FC<MenuPropsInterface> = ({ getAdsProps, setSubString, setCategoryId, setSubCategoryId }) => {
   const [stableItems, setStableItems] = useState<Array<MenuInterface>>([]);
   const [listItems, setListItems] = useState<Array<MenuInterface>>([]);
   const [menuLoading, setMenuLoading] = useState(false);
   const [currentLang, setCurrentLang] = useState(i18next.language);
   const [itemsData, setItemsData] = useState<Array<DataMenuInterface>>([]);
 
-  const { subString, category, subCategory } = getAdsProps.functionProps;
+  const { subString, categoryId, subCategoryId } = getAdsProps.functionProps;
 
   i18next.on("languageChanged", () => setCurrentLang(i18next.language));
 
@@ -34,10 +34,11 @@ const Menu: FC<MenuPropsInterface> = ({ getAdsProps, setSubString, setCategory, 
   useEffect(() => {
     const items = itemsData.map((e: DataMenuInterface): MenuInterface => {
       return {
-        ...e,
+        _id: e.title["gb"],
         title: e.title[currentLang as keyof TitleInterface],
-        contents: e.contents[currentLang as keyof TitleInterface].map(el => {
+        contents: e.contents[currentLang as keyof TitleInterface].map((el, i) => {
           return {
+            _id: e.contents["gb"][i],
             text: el,
             selected: false,
           };
@@ -46,17 +47,16 @@ const Menu: FC<MenuPropsInterface> = ({ getAdsProps, setSubString, setCategory, 
         selected: false,
       };
     });
+    console.log(items)
     setListItems(items);
     setStableItems(items);
     setMenuLoading(false);
   }, [currentLang, itemsData]);
 
-  const onItemClick = (e: MouseEvent<HTMLDivElement>) => {
-    subCategory && setSubCategory("");
-    const target = e.target as HTMLDivElement;
-    const innerText = target.innerText;
+  const onItemClick = (id: string) => {
+    subCategoryId && setSubCategoryId("");
     setListItems(stableItems.map(stableItem => {
-      const condition = stableItem.title === innerText;
+      const condition = stableItem._id === id;
       return {
         ...stableItem,
         open: condition ? true : false,
@@ -64,31 +64,29 @@ const Menu: FC<MenuPropsInterface> = ({ getAdsProps, setSubString, setCategory, 
       };
     }));
     subString !== "" && setSubString("");
-    setCategory(innerText);
+    setCategoryId(id);
   }
 
-  const onSubItemClick = (e: MouseEvent<HTMLDivElement>) => {
-    category && setCategory("");
-    const target = e.target as HTMLDivElement;
-    const innerText = target.innerText;
+  const onSubItemClick = (id: string) => {
+    categoryId && setCategoryId("");
     setListItems(
       stableItems.map(stableItem => {
         return {
           ...stableItem,
           open: stableItem.contents
-            .map(el => el.text)
-            .includes(innerText) && true,
+            .map(el => el._id)
+            .includes(id) && true,
           contents: stableItem.contents
             .map(stableSubItem => {
               return {
                 ...stableSubItem,
-                selected: stableSubItem.text === innerText && true,
+                selected: stableSubItem._id === id && true,
               };
             }),
         };
       })
     );
-    setSubCategory(innerText);
+    setSubCategoryId(id);
   }
 
   return (
@@ -107,7 +105,7 @@ const Menu: FC<MenuPropsInterface> = ({ getAdsProps, setSubString, setCategory, 
             return (
               <>
                 <ListItemButton
-                  onClick={e => onItemClick(e)}
+                  onClick={() => onItemClick(li._id)}
                   selected={li.selected}
                 >
                   <ListItemText primary={li.title} />
@@ -119,7 +117,7 @@ const Menu: FC<MenuPropsInterface> = ({ getAdsProps, setSubString, setCategory, 
                       return (
                         <ListItemButton
                           sx={{ pl: 4 }}
-                          onClick={e => onSubItemClick(e)}
+                          onClick={() => onSubItemClick(subItem._id)}
                           selected={subItem.selected}
                         >
                           <ListItemText primary={subItem.text} />

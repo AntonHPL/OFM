@@ -29,8 +29,8 @@ const Ads: FC = () => {
   const PER_PAGE = 3;
   const [page, setPage] = useState<number | undefined>(undefined);
   const [subString, setSubString] = useState("");
-  const [category, setCategory] = useState("");
-  const [subCategory, setSubCategory] = useState("");
+  const [categoryId, setCategoryId] = useState("");
+  const [subCategoryId, setSubCategoryId] = useState("");
   const [adsAmount, setAdsAmount] = useState(0);
 
   const defaultPage = 1;
@@ -40,8 +40,8 @@ const Ads: FC = () => {
       PER_PAGE,
       sortingParams,
       subString,
-      category,
-      subCategory,
+      categoryId,
+      subCategoryId,
     },
     setAds,
     setPageCount,
@@ -61,7 +61,7 @@ const Ads: FC = () => {
     page !== defaultPage && setPage(defaultPage);
     getAdsProps = { ...getAdsProps, functionProps: { ...getAdsProps.functionProps, page: defaultPage } };
     page === defaultPage && getAds(getAdsProps);
-  }, [sortingParams, category, subCategory]);
+  }, [sortingParams, categoryId, subCategoryId]);
 
   const sortingOptions: Array<SortingOptionInterface> = [
     { value: "price_asc", label: t("ads.priceLowestFirst") },
@@ -75,8 +75,8 @@ const Ads: FC = () => {
       <Menu
         getAdsProps={getAdsProps}
         setSubString={setSubString}
-        setCategory={setCategory}
-        setSubCategory={setSubCategory}
+        setCategoryId={setCategoryId}
+        setSubCategoryId={setSubCategoryId}
       />
       <div className="main">
         <div className="sorting-and-search">

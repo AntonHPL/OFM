@@ -10,11 +10,13 @@
 
     .sorting-and-search {
       @include flex-options($justify_content: space-between);
+      gap: 8px;
       @include standard-margin-bottom();
 
       .sorting {
         @include indents(0 !important, 0 !important);
         @include size(200px);
+        flex-shrink: 0;
       }
 
       .search {
@@ -33,7 +35,8 @@
       }
 
       .ads-amount {
-        @include size(120px);
+        flex-shrink: 0;
+        @include indents($padding: 0 8px);
         @include flex_center();
         border-radius: 4px;
         color: #fff;

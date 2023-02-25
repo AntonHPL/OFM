@@ -3,18 +3,18 @@ const Ad = require("../../models/ad");
 
 const countAds = (req, res) => {
   const subString = req.query.subString;
-  const category = req.query.category;
-  const subCategory = req.query.subCategory;
+  const categoryId = req.query.categoryId;
+  const subCategoryId = req.query.subCategoryId;
   const userId = req.query.userId;
   const countOptions = {};
   if (subString) {
     countOptions["textInfo.title"] = new RegExp(subString, "gi");
   };
-  if (category) {
-    countOptions["textInfo.category"] = category;
+  if (categoryId) {
+    countOptions["textInfo.category"] = categoryId;
   };
-  if (subCategory) {
-    countOptions["textInfo.subCategory"] = subCategory;
+  if (subCategoryId) {
+    countOptions["textInfo.subCategory"] = subCategoryId;
   };
   if (userId) {
     countOptions["textInfo.sellerId"] = userId;
@@ -31,25 +31,25 @@ const getAds = (req, res) => {
   const order = req.query.order === "asc" ? 1 : -1;
   const field = req.query.field === "price" ? "textInfo.price" : "creationDate";
   const subString = req.query.subString;
-  const subCategory = req.query.subCategory;
-  const category = req.query.category;
+  const subCategoryId = req.query.subCategoryId;
+  const categoryId = req.query.categoryId;
   const sortingOptions = new Object();
   sortingOptions[field] = order;
   const regExp = new RegExp(subString, "gi");
   const searchOptions = () => {
     if (subString) {
-      if (category) {
-        return { "textInfo.title": regExp, "textInfo.category": category };
-      } else if (subCategory) {
-        return { "textInfo.title": regExp, "textInfo.subCategory": subCategory };
+      if (categoryId) {
+        return { "textInfo.title": regExp, "textInfo.category": categoryId };
+      } else if (subCategoryId) {
+        return { "textInfo.title": regExp, "textInfo.subCategory": subCategoryId };
       } else {
         return { "textInfo.title": regExp };
       };
     } else if (!subString) {
-      if (category) {
-        return { "textInfo.category": category };
-      } else if (subCategory) {
-        return { "textInfo.subCategory": subCategory };
+      if (categoryId) {
+        return { "textInfo.category": categoryId };
+      } else if (subCategoryId) {
+        return { "textInfo.subCategory": subCategoryId };
       } else {
         return {}
       };

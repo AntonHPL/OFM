@@ -79,7 +79,7 @@
     "logOut": "Выйти"
   },
   "imagesCard": {
-    "photos": "Photos",
+    "photos": "Фотографии",
     "clickToAddPhotos": "Щелкните, чтобы добавить фото...",
     "orDropThemHere": "...или перетащите их сюда.",
     "clickToMakeThePictureTheMainOne": "Щелкните, чтобы сделать изображение главным.",
@@ -112,6 +112,7 @@
     "theDescriptionFieldIsEmpty": "Поле для описания пустое.",
     "theRegionIsNotChosen": "Не выбран регион.",
     "theCityIsNotChosen": "Не выбран город.",
+    "generalInfo": "Общая информация",
     "productTitle": "Название продукции",
     "exampleDeliciosMilk": "Пример: вкусное молоко.",
     "category": "Категория",
@@ -123,10 +124,12 @@
     "priceUSD": "Цена (USD)",
     "example10": "Пример: 10.",
     "forFree": "Бесплатно",
+    "productsLocation": "Расположение продукции",
     "region": "Регион",
     "exampleIndiana": "Пример: Индиана.",
     "city": "Город",
     "exampleIndianopolis": "Пример: Индианополис.",
+    "sellersContacts": "Контакты продавца",
     "name": "Имя",
     "email": "Электронная почта",
     "save&Place": "Сохранить и разместить"

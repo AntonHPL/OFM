@@ -29,6 +29,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import i18next from "i18next";
 import '../i18n';
+import { useNavigate } from 'react-router-dom';
 
 const NewAdForm: FC<NewAdFormPropsInterface> = ({
   ad,
@@ -51,6 +52,7 @@ const NewAdForm: FC<NewAdFormPropsInterface> = ({
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [categoriesData, setCategoriesData] = useState([]);
   const [currentLang, setCurrentLang] = useState(i18next.language);
+  const navigate = useNavigate();
 
   i18next.on("languageChanged", () => setCurrentLang(i18next.language));
 
@@ -76,7 +78,7 @@ const NewAdForm: FC<NewAdFormPropsInterface> = ({
   const EF = (field: string): ErrorInterface | undefined => errorFound(errors, field);
   const RE = (field: string): void => resetErrors(errors, field, setErrors);
 
-  const closeDialog = (): void => setIsDialogOpen(false);
+  const closeDialog = (): void => { setIsDialogOpen(false); navigate("/") };
 
   const typography = (value: string) => (
     <Typography variant="h5">
@@ -131,11 +133,11 @@ const NewAdForm: FC<NewAdFormPropsInterface> = ({
   useEffect(() => {
     setCategories(categoriesData.map((e: DataCategoryInterface): CategoryInterface => {
       return ({
-        value: e.title[currentLang as keyof TitleInterface],
+        value: e.title["gb"],
         label: e.title[currentLang as keyof TitleInterface],
-        subCategories: e.contents[currentLang as keyof TitleInterface].map(el => {
+        subCategories: e.contents[currentLang as keyof TitleInterface].map((el, i) => {
           return ({
-            value: el,
+            value: e.contents["gb"][i],
             label: el,
           });
         }),
@@ -210,7 +212,7 @@ const NewAdForm: FC<NewAdFormPropsInterface> = ({
         encType="multipart/form-data"
         className="new-ad-form"
       >
-        {typography("General Info")}
+        {typography(t("newAdForm.generalInfo"))}
         <TextField
           autoComplete="off"
           error={!!EF("title")}
@@ -315,7 +317,7 @@ const NewAdForm: FC<NewAdFormPropsInterface> = ({
             label={t("newAdForm.forFree")}
             className="price-label" />
         </div>
-        {typography("Product's Location")}
+        {typography(t("newAdForm.productsLocation"))}
         <div className="complex-form-row">
           <FormControl
             error={!!EF("region")}
@@ -366,7 +368,7 @@ const NewAdForm: FC<NewAdFormPropsInterface> = ({
             </FormControl>
           }
         </div>
-        {typography("Seller's Contacts")}
+        {typography(t("newAdForm.sellersContacts"))}
         {disabledField("text", t("newAdForm.name"), ad.sellerName)}
         {disabledField("email", t("newAdForm.email"), ad.sellerEmail)}
         <Button

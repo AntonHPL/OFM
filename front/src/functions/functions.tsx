@@ -8,8 +8,8 @@ export const getAds = ({
     PER_PAGE,
     sortingParams,
     subString,
-    category = "",
-    subCategory = "",
+    categoryId = "",
+    subCategoryId = "",
   },
   setAds,
   setPageCount,
@@ -25,8 +25,8 @@ export const getAds = ({
         field: sortingParams && sortingParams[0] || undefined,
         order: sortingParams && sortingParams[1] || undefined,
         subString: subString || undefined,
-        category: category || undefined,
-        subCategory: subCategory || undefined,
+        categoryId: categoryId || undefined,
+        subCategoryId: subCategoryId || undefined,
       }
     })
     .then(({ data }) => {
@@ -34,8 +34,8 @@ export const getAds = ({
       axios.get("/api/count_ads", {
         params: {
           subString: subString || undefined,
-          category: category || undefined,
-          subCategory: subCategory || undefined,
+          categoryId: categoryId || undefined,
+          subCategoryId: subCategoryId || undefined,
         }
       })
         .then(({ data }) => {

@@ -103,7 +103,6 @@
     "createANewAd": "Create a new Ad"
   },
   "newAdForm": {
-    "apiRegions": "/api/regions",
     "thePriceFieldIsEmpty": "The Price Field is empty.",
     "theMinimumPriceIs001USD": "The Minimum Price is 0.01 USD.",
     "theTitleFieldIsEmpty": "The Title Field is empty.",
@@ -112,6 +111,7 @@
     "theDescriptionFieldIsEmpty": "The Description Field is empty.",
     "theRegionIsNotChosen": "The Region is not chosen.",
     "theCityIsNotChosen": "The City is not chosen.",
+    "generalInfo": "General Info",
     "productTitle": "Product Title",
     "exampleDeliciosMilk": "Example: Delicious Milk.",
     "category": "Category",
@@ -123,10 +123,12 @@
     "priceUSD": "Price (USD)",
     "example10": "Example: 10.",
     "forFree": "For free",
+    "productsLocation": "Product's Location",
     "region": "Region",
     "exampleIndiana": "Example: Indiana.",
     "city": "City",
     "exampleIndianopolis": "Example: Indianopolis.",
+    "sellersContacts": "Seller's Contacts",
     "name": "Name",
     "email": "Email",
     "save&Place": "Save & place"
