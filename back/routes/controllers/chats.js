@@ -51,10 +51,12 @@ const deleteChat = (req, res) => {
 };
 
 const sendMessage = (req, res) => {
-  pusher.trigger("chat-channel", "msg", {
-    senderId: req.body.senderId,
-    message: req.body.message
-  })
+  pusher
+    .trigger("chat-channel", "msg", {
+      senderId: req.body.senderId,
+      message: req.body.message,
+      creationDate: req.body.creationDate
+    })
     .then(() => res.json(true));
 }
 

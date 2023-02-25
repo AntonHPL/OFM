@@ -52,7 +52,7 @@ const Chats: FC = () => {
 		e.preventDefault();
 		// webSocket && webSocket.send(JSON.stringify({ senderId: myId, message: messageText }));
 		// setNewMessage({ senderId: myId, message: messageText })
-		const messageToSend = { senderId: myId, message: messageText };
+		const messageToSend = { senderId: myId, message: messageText, creationDate: new Date().toISOString() };
 		axios.post("/api/message", messageToSend);
 		setMessageText("");
 	};

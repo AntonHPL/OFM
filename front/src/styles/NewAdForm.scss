@@ -40,11 +40,12 @@
     align-items: top;
 
     .price-field {
-      @include size(550px);
+      flex-grow: 1;
     }
 
     .price-label {
       @include size($height: 56px);
+      @include indents($padding: 0 8px);
     }
   }
 }
