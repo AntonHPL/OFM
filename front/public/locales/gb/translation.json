@@ -51,7 +51,7 @@
   },
   "chats": {
     "locales": "en-US",
-    "enterYourMessage": "Enter your Message",
+    "enterYourMessage": "Enter your Message...",
     "chooseTheChat": "Choose the Chat...",
     "noChats": "No Chats..."
   },
@@ -62,7 +62,7 @@
     "yes": "Yes"
   },
   "firstMessageDialog": {
-    "enterYourMessage": "Enter your Message",
+    "enterYourMessage": "Enter your Message...",
     "quit": "Quit",
     "send": "Send"
   },
@@ -146,7 +146,7 @@
     "inCorrectValueTryAgain": "Incorrect value. Try again.",
     "enterYourName": "Enter your Name...",
     "enterYourEmail": "Enter your Email...",
-    "aPasswordMustContainMinimum8CharactersAtLeastOneLetterAndOneNumber": "A password must contain minimum 8 characters, at least one letter and one number.",
+    "aPasswordMustContainAMinimumOf8CharactersAtLeastOneLetterAndOneNumber": "A password must contain a minimum of 8 characters, at least one letter and one number.",
     "createAPassword": "Create a Password...",
     "confirmThePassword": "Confirm the Password...",
     "continue": "Continue",

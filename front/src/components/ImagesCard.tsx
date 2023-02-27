@@ -68,7 +68,7 @@ const ImagesCard: FC<ImagesCardPropsInterface> = ({
           .catch(error => console.error("The error occured: ", error.message))
       } else {
         axios
-          .post("/api/ad", fd)
+          .post("/api/item", fd)
           .then(() => {
             setImagesUploaded(prev => condition ? prev + imagesToUpload.length : prev + spaceLeft);
             setAdIsCreated(true);
@@ -110,7 +110,7 @@ const ImagesCard: FC<ImagesCardPropsInterface> = ({
     setImageBeingRemoved(id);
     if (imagesUploaded === 1) {
       axios
-        .delete(`/api/ad/${creationDate}`)
+        .delete(`/api/item/${creationDate}`)
         .then(() => {
           setImagesUploaded(prev => prev - 1);
           setImages(null);

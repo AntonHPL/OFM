@@ -10,7 +10,15 @@ const menuSchema = new Schema({
     ru: {
       type: String,
       required: true,
-    }
+    },
+    ua: {
+      type: String,
+      required: true,
+    },
+    de: {
+      type: String,
+      required: true,
+    },
   },
   contents: {
     gb: {
@@ -20,7 +28,15 @@ const menuSchema = new Schema({
     ru: {
       type: Array,
       required: true,
-    }
+    },
+    ua: {
+      type: String,
+      required: true,
+    },
+    de: {
+      type: String,
+      required: true,
+    },
   }
 });
 

@@ -1,0 +1,161 @@
+{
+  "accountDialog": {
+    "logIn": "Увійти",
+    "createAnAccount": "Створити акаунт"
+  },
+  "ad": {
+    "writeToTheSeller": "Написати продавцю",
+    "forFree": "Безкоштовно",
+    "locatedIn": "Розташовується в",
+    "createdOn": "Створено",
+    "locales": "ru-RU",
+    "aboutSeller": "Про продавця",
+    "onOnlineFarmersMarketSince": "На Фермерському онлайн-ринку: з",
+    "thatIsYourAdYouCan": "Це ваше оголошення. Ви можете",
+    "deleteIt": "видалити його",
+    "anyTime": "в будь-який момент.",
+    "description": "Опис",
+    "interested": "Зацікавлені?",
+    "askTheSellerOneOfTheQuestionsProposed": "Задайте продавцю одне із запропонованих питань...",
+    "orWriteYourOwn": "...або напишіть власний...",
+    "notSoldYet": "Ще не продали?",
+    "howToPickUpTheGoods": "Як забрати товари?",
+    "isThePriceNegotiable": "Торг доречний?"
+  },
+  "adCard": {
+    "forFree": "Безкоштовно",
+    "by": "Від",
+    "from": "з",
+    "learnMore": "Детальніше..."
+  },
+  "ads": {
+    "priceLowestFirst": "Ціна: спочатку низька",
+    "priceHighestFirst": "Ціна: спочатку висока",
+    "dateNeswestFirst": "Дата: спочатку нове",
+    "dateOldestFirst": "Дата: спочатку старе",
+    "sorting": "Сортування",
+    "search": "Пошук...",
+    "ad": "оголошення",
+    "ads": "оголошень",
+    "found": "знайдено",
+    "nothingWasFoundTryToChangeTheSearchCriteria": "Нічого не було знайдено. Спробуйте змінити параметри пошуку."
+  },
+  "captcha": {
+    "enterTheCaptcha": "Введіть капчу..."
+  },
+  "chatDeletionDialog": {
+    "areYouSureYouWantToDeleteThisDialog": "Ви впевнені, що бажаєте видалити цей діалог?",
+    "pleaseKeepInMindThatTheDialogWillBeDeletedForYourInterlocutorAsWell": "Будь ласка, майте на увазі, що цей діалог буде видалено для Вашого співрозмовника.",
+    "cancel": "Відміна",
+    "ok": "OK"
+  },
+  "chats": {
+    "locales": "ru-RU",
+    "enterYourMessage": "Введіть ваше повідомлення...",
+    "chooseTheChat": "Виберіть чат...",
+    "noChats": "Немає чатів..."
+  },
+  "confirmationDialog": {
+    "pleaseConfirmTheAction": "Будь ласка, підтвердьте дію.",
+    "doYouWantToSetThisImageAsYourProfilePicture": "Ви хочете встановити це зображення як профільне?",
+    "no": "Ні",
+    "yes": "Так"
+  },
+  "firstMessageDialog": {
+    "enterYourMessage": "Введіть ваше повідомлення...",
+    "quit": "Закрити",
+    "send": "Відправити"
+  },
+  "generalInfo": {
+    "locales": "ru-RU",
+    "email": "Електронна пошта:",
+    "myAds": "Мої оголошення",
+    "myChats": "Мої чати"
+  },
+  "header": {
+    "myProfile": "Мій профіль",
+    "myAds": "Мої оголошення",
+    "myChats": "Мої чати",
+    "logOut": "Вийти"
+  },
+  "imagesCard": {
+    "photos": "Фотографії",
+    "clickToAddPhotos": "Натисніть, щоб додати фото...",
+    "orDropThemHere": "...або перетягніть їх сюди.",
+    "clickToMakeThePictureTheMainOne": "Клацніть, щоб зробити зображення головним.",
+    "youHaveTriedToAddTooManyPicturesThatExceedsTheLimit.": "Ви намагалися додати занадто багато (4+) зображень. Це перевищення ліміту."
+  },
+  "interlocutors": {
+    "deletedAd": "(Віддалене оголошення.)",
+    "you": "Ви:"
+  },
+  "logInForm": {
+    "theEmailFieldIsEmpty": "Поле для електронної пошти пусте.",
+    "thePasswordFieldIsEmpty": "Поле для пароля пусте.",
+    "enterYourEmail": "Введіть свою електронну пошту...",
+    "enterYourPassword": "Введіть свій пароль...",
+    "rememberFor7Days": "Запам'ятати на тиждень.",
+    "continue": "Продовжити",
+    "dontHaveAnAccountYet": "Ще немає акаунта?",
+    "signUp": "Зареєструватись."
+  },
+  "newAd": {
+    "createANewAd": "Створити нове оголошення"
+  },
+  "newAdForm": {
+    "thePriceFieldIsEmpty": "Поле для ціни пусте.",
+    "theMinimumPriceIs001USD": "Мінімальна ціна складає 0.01 USD.",
+    "theTitleFieldIsEmpty": "Поле з назвою пусте.",
+    "theCategoryIsNotChosen": "Не вибрано категорію.",
+    "theSubCategoryIsNotChosen": "Не вибрано підкатегорію.",
+    "theDescriptionFieldIsEmpty": "Поле для опису пусте.",
+    "theRegionIsNotChosen": "Не вибрано регіон.",
+    "theCityIsNotChosen": "Не вибрано місто.",
+    "generalInfo": "Загальна інформація",
+    "productTitle": "Назва продукції",
+    "exampleDeliciosMilk": "Приклад: смачне молоко.",
+    "category": "Категорія",
+    "exampleDairyProducts": "Приклад: молочна продукція.",
+    "subCategory": "Підкатегорія",
+    "exampleMilk&Cream": "Приклад: молоко та вершки.",
+    "description": "Опис",
+    "exampleFreshMilkFromOldMcDonaldsFarm": "Приклад: свіже молоко з фермерів старого Макдональда.",
+    "priceUSD": "Ціна (USD)",
+    "example10": "Приклад: 10.",
+    "forFree": "Безкоштовно",
+    "productsLocation": "Розташування продукції",
+    "region": "Регіон",
+    "exampleIndiana": "Приклад: Індіана.",
+    "city": "Місто",
+    "exampleIndianopolis": "Приклад: Індіанополіс.",
+    "sellersContacts": "Контакти продавця",
+    "name": "Ім'я",
+    "email": "Електронна пошта",
+    "save&Place": "Зберегти та розмістити"
+  },
+  "profile": {
+    "myProfile": "Мій профіль"
+  },
+  "signUpForm": {
+    "theNameFieldIsEmpty": "Поле для імені пусте.",
+    "theEmailFieldIsEmpty": "Поле для електронної пошти пусте.",
+    "thePasswordFieldIsEmpty": "Поле для пароля пусте.",
+    "thePasswordIsNotValid": "Пароль недійсний.",
+    "thePasswordsDoNotMatch": "Паролі не співпадають.",
+    "theCaptchaFieldIsEmpty": "Поле для капчі пусте.",
+    "inCorrectValueTryAgain": "Неправильне значення. Спробуйте знову.",
+    "enterYourName": "Введіть своє ім'я...",
+    "enterYourEmail": "Введіть свою електронну пошту...",
+    "aPasswordMustContainAMinimumOf8CharactersAtLeastOneLetterAndOneNumber": "Пароль повинен містити щонайменше 8 символів, принаймні одну літеру та одну цифру.",
+    "createAPassword": "Створіть пароль...",
+    "confirmThePassword": "Підтвердіть пароль...",
+    "continue": "Продовжити",
+    "alreadyHaveAnAccount": "Вже є акаунт?",
+    "logIn": "Увійти."
+  },
+  "successDialog": {
+    "congratulations": "Вітаємо!",
+    "yourAdWasSuccessfullyCreated": "Ваше оголошення успішно створено!",
+    "ok": "OK"
+  }
+}

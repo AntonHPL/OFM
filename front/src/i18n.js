@@ -10,7 +10,7 @@ i18n
   .use(initReactI18next)
   .init({
     fallbackLng: "gb",
-    whitelist: ["gb", "ru"],
+    whitelist: ["gb", "ru", "ua", "de"],
     debug: false,
     detection: {
       order: ["cookie"],

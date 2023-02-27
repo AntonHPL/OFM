@@ -19,7 +19,7 @@ const validateToken = (req, res, next) => {
 };
 
 const logOut = (req, res) => {
-  res.cookie("access-token", "", { maxAge: 3600 * 1000 });
+  res.clearCookie("access-token");
   res.json(true);
 };
 

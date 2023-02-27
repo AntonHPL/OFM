@@ -1,0 +1,161 @@
+{
+  "accountDialog": {
+    "logIn": "Anmelden",
+    "createAnAccount": "Ein Konto erstellen"
+  },
+  "ad": {
+    "writeToTheSeller": "An den Verkäufer schreiben",
+    "forFree": "Kostenlos",
+    "locatedIn": "Befindet sich in",
+    "createdOn": "Erstellt am",
+    "locales": "en-US",
+    "aboutSeller": "Über Verkäufer",
+    "onOnlineFarmersMarketSince": "Auf dem Online Farmers Market: seit",
+    "thatIsYourAdYouCan": "Das ist Ihre Anzeige. Sie können es jederzeit",
+    "deleteIt": "löschen",
+    "anyTime": ".",
+    "description": "Beschreibung",
+    "interested": "Interessiert?",
+    "askTheSellerOneOfTheQuestionsProposed": "Stellen Sie dem Verkäufer eine der vorgeschlagenen Fragen...",
+    "orWriteYourOwn": "...oder schreiben Sie Ihre eigene...",
+    "notSoldYet": "Noch nicht verkauft?",
+    "howToPickUpTheGoods": "Wie kann ich die Ware abholen?",
+    "isThePriceNegotiable": "Ist der Preis verhandelbar?"
+  },
+  "adCard": {
+    "forFree": "Kostenlos",
+    "by": "Von",
+    "from": "aus",
+    "learnMore": "Lernen mehr..."
+  },
+  "ads": {
+    "priceLowestFirst": "Preis: niedrigster zuerst",
+    "priceHighestFirst": "Preis: höchster zuerst",
+    "dateNeswestFirst": "Datum: neueste zuerst",
+    "dateOldestFirst": "Datum: älteste zuerst",
+    "sorting": "Sortierung",
+    "search": "Suchen...",
+    "ad": "Anzeige",
+    "ads": "Anzeigen",
+    "found": "gefunden",
+    "nothingWasFoundTryToChangeTheSearchCriteria": "Es wurde nichts gefunden. Versuchen Sie, die Suchkriterien zu ändern."
+  },
+  "captcha": {
+    "enterTheCaptcha": "Geben Sie das Captcha ein...."
+  },
+  "chatDeletionDialog": {
+    "areYouSureYouWantToDeleteThisDialog": "Möchten Sie diesen Dialog wirklich löschen?",
+    "pleaseKeepInMindThatTheDialogWillBeDeletedForYourInterlocutorAsWell": "Bitte beachten Sie, dass der Dialog auch für Ihren Gesprächspartner gelöscht wird.",
+    "cancel": "Stornieren",
+    "ok": "OK"
+  },
+  "chats": {
+    "locales": "de-DE",
+    "enterYourMessage": "Geben Sie Ihre Nachricht ein...",
+    "chooseTheChat": "Wählen Sie den Chat...",
+    "noChats": "Es gibt keine Chats..."
+  },
+  "confirmationDialog": {
+    "pleaseConfirmTheAction": "Bitte bestätigen Sie die Aktion.",
+    "doYouWantToSetThisImageAsYourProfilePicture": "Möchten Sie dieses Bild als Ihr Profilbild festlegen?",
+    "no": "Nein",
+    "yes": "Ja"
+  },
+  "firstMessageDialog": {
+    "enterYourMessage": "Geben Sie Ihre Nachricht ein...",
+    "quit": "Aufhören",
+    "send": "Senden"
+  },
+  "generalInfo": {
+    "locales": "de-DE",
+    "email": "Email:",
+    "myAds": "Meine Anzeigen",
+    "myChats": "Meine Chats"
+  },
+  "header": {
+    "myProfile": "Mein Profil",
+    "myAds": "Meine Anzeigen",
+    "myChats": "Meine Chats",
+    "logOut": "Abmelden"
+  },
+  "imagesCard": {
+    "photos": "Fotos",
+    "clickToAddPhotos": "Klicken Sie hier, um Fotos hinzufügen...",
+    "orDropThemHere": "...oder lassen Sie sie hier fallen.",
+    "clickToMakeThePictureTheMainOne": "Klicken Sie, um das Bild zum Hauptbild zu machen.",
+    "youHaveTriedToAddTooManyPicturesThatExceedsTheLimit": "Sie haben versucht, zu viele (4+) Bilder hinzuzufügen. Das überschreitet die Grenze."
+  },
+  "interlocutors": {
+    "deletedAd": "(Gelöschte Anzeige.)",
+    "you": "Sie:"
+  },
+  "logInForm": {
+    "theEmailFieldIsEmpty": "Das E-Mail-Feld ist leer.",
+    "thePasswordFieldIsEmpty": "Das Passwortfeld ist leer.",
+    "enterYourEmail": "Geben Sie Ihre Email ein...",
+    "enterYourPassword": "Geben Sie Ihr Passwort ein...",
+    "rememberFor7Days": "Erinnern sich für 7 Tage.",
+    "continue": "Fortsetzen",
+    "dontHaveAnAccountYet": "Sie haben noch kein Konto?",
+    "signUp": "Jetzt registrieren."
+  },
+  "newAd": {
+    "createANewAd": "Eine neue Anzeige erstellen"
+  },
+  "newAdForm": {
+    "thePriceFieldIsEmpty": "Das Preisfeld ist leer.",
+    "theMinimumPriceIs001USD": "Der Mindestpreis beträgt 0,01 USD.",
+    "theTitleFieldIsEmpty": "Das Titelfeld ist leer.",
+    "theCategoryIsNotChosen": "Die Kategorie ist nicht ausgewählt.",
+    "theSubCategoryIsNotChosen": "Die Unterkategorie ist nicht ausgewählt.",
+    "theDescriptionFieldIsEmpty": "Das Beschreibungsfeld ist leer.",
+    "theRegionIsNotChosen": "Die Region wird nicht ausgewählt.",
+    "theCityIsNotChosen": "Die Stadt wird nicht ausgewählt.",
+    "generalInfo": "Allgemeine Information",
+    "productTitle": "Produktname",
+    "exampleDeliciosMilk": "Beispiel: Köstliche Milch.",
+    "category": "Kategorie",
+    "exampleDairyProducts": "Beispiel: Milchprodukte.",
+    "subCategory": "Unterkategorie",
+    "exampleMilk&Cream": "Beispiel: Milch & Creme.",
+    "description": "Beschreibung",
+    "exampleFreshMilkFromOldMcDonaldsFarm": "Beispiel: Frische Milch vom alten McDonald's-Bauernhof.",
+    "priceUSD": "Preis (USD)",
+    "example10": "Beispiel: 10.",
+    "forFree": "Kostenlos",
+    "productsLocation": "Standort des Produkts",
+    "region": "Region",
+    "exampleIndiana": "Beispiel: Indiana.",
+    "city": "Stadt",
+    "exampleIndianopolis": "Beispiel: Indianopolis.",
+    "sellersContacts": "Kontakte des Verkäufers",
+    "name": "Name",
+    "email": "Email",
+    "save&Place": "Speichern & Platzieren"
+  },
+  "profile": {
+    "myProfile": "Mein Profil"
+  },
+  "signUpForm": {
+    "theNameFieldIsEmpty": "Das Namensfeld ist leer.",
+    "theEmailFieldIsEmpty": "Das E-Mail-Feld ist leer.",
+    "thePasswordFieldIsEmpty": "Das Passwortfeld ist leer.",
+    "thePasswordIsNotValid": "Das Passwort ist ungültig.",
+    "thePasswordsDoNotMatch": "Die Passwörter stimmen nicht überein.",
+    "theCaptchaFieldIsEmpty": "Das Captcha-Feld ist leer.",
+    "inCorrectValueTryAgain": "Falscher Wert. Versuchen Sie es erneut.",
+    "enterYourName": "Geben Sie Ihren Namen ein...",
+    "enterYourEmail": "Geben Sie Ihre Email ein...",
+    "aPasswordMustContainAMinimumOf8CharactersAtLeastOneLetterAndOneNumber": "Ein Passwort muss mindestens 8 Zeichen lang sein, mindestens einen Buchstaben und eine Zahl.",
+    "createAPassword": "Erstellen Sie ein Passwort...",
+    "confirmThePassword": "Bestätigen Sie das Passwort...",
+    "continue": "Fortsetzen",
+    "alreadyHaveAnAccount": "Sie haben bereits ein Konto?",
+    "logIn": "Abmelden."
+  },
+  "successDialog": {
+    "congratulations": "Glückwunsch!",
+    "yourAdWasSuccessfullyCreated": "Ihre Anzeige wurde erfolgreich erstellt!",
+    "ok": "OK"
+  }
+}

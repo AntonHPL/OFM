@@ -9,7 +9,7 @@ import {
   CardActionArea,
 } from '@mui/material';
 import { NoPhotography } from "@mui/icons-material";
-import { AdCardPropsInterface } from "../types";
+import { AdCardPropsInterface, AdInterface } from "../types";
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import '../i18n';

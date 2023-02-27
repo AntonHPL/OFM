@@ -22,7 +22,7 @@ const MyAds: FC = () => {
     if (user) {
       setAdsLoading(true);
       axios
-        .get(`/api/ads/${user._id}`, {
+        .get(`/api/items/${user._id}`, {
           params: {
             page,
             perPage: PER_PAGE,
@@ -30,7 +30,7 @@ const MyAds: FC = () => {
         })
         .then(({ data }) => {
           setMyAds(data);
-          return axios.get("/api/count_ads", {
+          return axios.get("/api/count_items", {
             params: {
               userId: user._id || undefined,
             }

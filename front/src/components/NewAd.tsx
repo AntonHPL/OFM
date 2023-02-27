@@ -40,7 +40,7 @@ const NewAd: FC = () => {
   //   `);
 
   const deleteUnsavedAd = (): void => {
-    axios.delete(`/api/unsaved_ad/${creationDate}`);
+    axios.delete(`/api/unsaved_item/${creationDate}`);
   };
 
   useEffect(() => {

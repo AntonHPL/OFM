@@ -1,7 +1,7 @@
 const fs = require("fs");
 const Ad = require("../../models/ad");
 
-const countAds = (req, res) => {
+const countItems = (req, res) => {
   const subString = req.query.subString;
   const categoryId = req.query.categoryId;
   const subCategoryId = req.query.subCategoryId;
@@ -25,7 +25,7 @@ const countAds = (req, res) => {
     .catch(error => console.error("The error occured: ", error.message));
 };
 
-const getAds = (req, res) => {
+const getItems = (req, res) => {
   const page = +req.query.page;
   const perPage = +req.query.perPage;
   const order = req.query.order === "asc" ? 1 : -1;
@@ -64,14 +64,14 @@ const getAds = (req, res) => {
     .catch(error => console.error("The error occured: ", error.message));
 };
 
-const deleteAd = (req, res) => {
+const deleteItem = (req, res) => {
   Ad
     .findOneAndDelete({ creationDate: req.params.creationDate })
     .then(() => res.json("The ad is deleted."))
     .catch(error => console.error("The error occured: ", error.message));
 };
 
-const postAd = (req, res) => {
+const postItem = (req, res) => {
   new Ad({
     images: req.files && req.files.map((el, i) => {
       return {
@@ -89,7 +89,7 @@ const postAd = (req, res) => {
     .catch(error => console.error("The error occured: ", error.message));
 };
 
-const deleteUnsavedAd = (req, res) => {
+const deleteUnsavedItem = (req, res) => {
   Ad
     .findOneAndDelete({ creationDate: req.params.creationDate, textInfo: {} })
     .then(() => res.status(200).json("The unsaved Ad is deleted."))
@@ -135,7 +135,7 @@ const deleteImage = (req, res) => {
     .catch(error => console.error("The error occured: ", error.message));
 };
 
-const finishAd = (req, res) => {
+const finishItem = (req, res) => {
   Ad
     .updateOne({
       creationDate: req.params.creationDate
@@ -158,14 +158,14 @@ const finishAd = (req, res) => {
     .catch(error => console.error("The error occured: ", error.message));
 };
 
-const getAd = (req, res) => {
+const getItem = (req, res) => {
   Ad
     .findOne({ _id: req.params.id })
     .then(ad => res.status(200).json(ad))
     .catch(error => console.error("The error occured: ", error.message));
 };
 
-const getMyAds = (req, res) => {
+const getMyItems = (req, res) => {
   const page = +req.query.page;
   const perPage = +req.query.perPage;
 
@@ -176,7 +176,7 @@ const getMyAds = (req, res) => {
     .catch(error => console.error("The error occured: ", error.message));
 };
 
-const getAdsBriefly = (req, res) => {
+const getItemsBriefly = (req, res) => {
   Ad
     .find(
       { _id: { $in: JSON.parse(req.query.adsIds) } },
@@ -190,16 +190,16 @@ const getAdsBriefly = (req, res) => {
 };
 
 module.exports = {
-  getAds,
-  countAds,
+  getItems,
+  countItems,
   getImages,
-  getMyAds,
-  postAd,
-  finishAd,
+  getMyItems,
+  postItem,
+  finishItem,
   addImages,
   deleteImage,
-  deleteAd,
-  deleteUnsavedAd,
-  getAd,
-  getAdsBriefly,
+  deleteItem,
+  deleteUnsavedItem,
+  getItem,
+  getItemsBriefly,
 };

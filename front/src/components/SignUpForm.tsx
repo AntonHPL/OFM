@@ -162,7 +162,7 @@ const SignUpForm: FC<SignUpFormPropsInterface> = ({ setLoading, setIsOpen, messa
           }}
           className="form-row"
         />
-        <Tooltip title={t("signUpForm.aPasswordMustContainMinimum8CharactersAtLeastOneLetterAndOneNumber")}>
+        <Tooltip title={t("signUpForm.aPasswordMustContainAMinimumOf8CharactersAtLeastOneLetterAndOneNumber")}>
           <TextField
             error={!!errorFound("password")}
             type="password"

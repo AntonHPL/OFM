@@ -8,7 +8,7 @@ const { createProxyMiddleware } = require("http-proxy-middleware");
 const chalk = require("chalk");
 require("dotenv").config();
 
-const adsRoutes = require('./routes/routes/ads');
+const itemsRoutes = require('./routes/routes/items');
 const chatsRoutes = require("./routes/routes/chats");
 const menusRoutes = require("./routes/routes/menus");
 const otherRoutes = require("./routes/routes/other");
@@ -27,7 +27,7 @@ const webSocketMessage = chalk.bold.bgBlue;
 app.use(cors());
 app.use(express.json(), express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(adsRoutes, chatsRoutes, menusRoutes, otherRoutes, regionsRoutes, usersRoutes);
+app.use(itemsRoutes, chatsRoutes, menusRoutes, otherRoutes, regionsRoutes, usersRoutes);
 
 app.use("/api", createProxyMiddleware({
     target: process.env.PROXY,

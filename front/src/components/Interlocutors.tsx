@@ -33,7 +33,7 @@ const Interlocutors: FC<InterlocutorsPropsInterface> = ({
 				}
 			});
 			axios
-				.get("/api/ads-briefly", {
+				.get("/api/items-briefly", {
 					params: { adsIds: JSON.stringify(modifiedChatsData.map(el => el.adId)) }
 				})
 				.then(({ data }) => {

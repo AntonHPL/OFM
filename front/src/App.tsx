@@ -1,4 +1,4 @@
-import { useContext, useState, useCallback, useEffect } from "react";
+import { useContext, useState, useEffect, useCallback } from "react";
 
 import {
   BrowserRouter as Router,
@@ -26,7 +26,11 @@ import GlobalStyles from "@mui/material/GlobalStyles/GlobalStyles";
 
 const App = () => {
   const { user, isTokenValidationComplete } = useContext(UserContext);
-  // const [palette, setPalette] = useState<Object>({});
+
+  useEffect(() => {
+    alert("Welcome! That's a Desktop Version Only. Mobile Version coming soon.")
+  }, []);
+
   const [color, setColor] = useState<any>(orange);
 
   const createPalette = useCallback((color: any) => ({

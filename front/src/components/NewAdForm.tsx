@@ -178,7 +178,7 @@ const NewAdForm: FC<NewAdFormPropsInterface> = ({
       setAdUploading(true);
       if (adIsCreated) {
         axios
-          .put(`/api/ad/${creationDate}`, { ad, mainPictureId })
+          .put(`/api/item/${creationDate}`, { ad, mainPictureId })
           .then(() => {
             setAdUploading(false);
             setIsDialogOpen(true);
@@ -190,7 +190,7 @@ const NewAdForm: FC<NewAdFormPropsInterface> = ({
       } else {
         const currentTime = new Date().toISOString();
         axios
-          .post("/api/ad", { creationDate: currentTime, ad })
+          .post("/api/item", { creationDate: currentTime, ad })
           .then(() => {
             setAdUploading(false);
             setIsDialogOpen(true);

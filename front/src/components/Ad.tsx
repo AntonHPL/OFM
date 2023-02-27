@@ -25,7 +25,7 @@ const Ad = () => {
 
   useEffect(() => {
     axios
-      .get(`/api/ad/${paramsId}`)
+      .get(`/api/item/${paramsId}`)
       .then(({ data }) => setAd(data))
       .catch(error => console.error("The error occured: ", error.message));
   }, []);
@@ -61,7 +61,7 @@ const Ad = () => {
   const deleteAd = () => {
     setDeletion(true);
     axios
-      .delete(`/api/ad/${ad?.creationDate}`)
+      .delete(`/api/item/${ad?.creationDate}`)
       .then(() => {
         setDeletion(false);
         navigate("/profile/ads");

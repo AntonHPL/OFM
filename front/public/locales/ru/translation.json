@@ -16,7 +16,7 @@
     "anyTime": "в любой момент.",
     "description": "Описание",
     "interested": "Заинтересованы?",
-    "askTheSellerOneOfTheQuestionsProposed": "Задайте продавцу один из предложенных вопрсов...",
+    "askTheSellerOneOfTheQuestionsProposed": "Задайте продавцу один из предложенных вопросов...",
     "orWriteYourOwn": "...или напишите собственный...",
     "notSoldYet": "Еще не продали?",
     "howToPickUpTheGoods": "Как забрать товары?",
@@ -51,7 +51,7 @@
   },
   "chats": {
     "locales": "ru-RU",
-    "enterYourMessage": "Введите Ваше сообщение",
+    "enterYourMessage": "Введите Ваше сообщение...",
     "chooseTheChat": "Выберите чат...",
     "noChats": "Нет чатов..."
   },
@@ -62,7 +62,7 @@
     "yes": "Да"
   },
   "firstMessageDialog": {
-    "enterYourMessage": "Введите Ваше сообщение",
+    "enterYourMessage": "Введите Ваше сообщение...",
     "quit": "Закрыть",
     "send": "Отправить"
   },
@@ -103,8 +103,7 @@
     "createANewAd": "Создать новое объявление"
   },
   "newAdForm": {
-    "apiRegions": "/api/regions-ru",
-    "thePriceFieldIsEmpty": "Поля для цены пустое.",
+    "thePriceFieldIsEmpty": "Поле для цены пустое.",
     "theMinimumPriceIs001USD": "Минимальная цена составляет 0.01 USD.",
     "theTitleFieldIsEmpty": "Поле с названием пустое.",
     "theCategoryIsNotChosen": "Не выбрана категория.",
@@ -147,7 +146,7 @@
     "inCorrectValueTryAgain": "Неверное значение. Попробуйте снова.",
     "enterYourName": "Введите свое имя...",
     "enterYourEmail": "Введите свою электронную почту...",
-    "aPasswordMustContainMinimum8CharactersAtLeastOneLetterAndOneNumber": "Пароль должен содержать миниумм 8 символов, по крайней мере одну букву и одну цифру.",
+    "aPasswordMustContainAMinimumOf8CharactersAtLeastOneLetterAndOneNumber": "Пароль должен содержать минимум 8 символов, по крайней мере одну букву и одну цифру.",
     "createAPassword": "Создайте пароль...",
     "confirmThePassword": "Подтвердите пароль...",
     "continue": "Продолжить",

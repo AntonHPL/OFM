@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext, FC, MouseEvent, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { AppBar, Menu, MenuItem, Toolbar, Box, Button, IconButton } from "@mui/material";
+import { AppBar, Menu, MenuItem, Toolbar, Box, Button, IconButton, Tooltip, ButtonGroup } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { UserContext } from "./UserContext";
@@ -10,7 +10,7 @@ import "/node_modules/flag-icons/css/flag-icons.min.css";
 import { useTranslation } from 'react-i18next';
 import '../i18n';
 // import { t, i18n } from "./translation";
-import { Lens } from "@mui/icons-material";
+import { AlternateEmail, Lens, Telegram, WhatsApp } from "@mui/icons-material";
 import { orange, indigo } from "@mui/material/colors";
 
 const Header: FC<any> = ({ logo, color, setColor }) => {
@@ -95,7 +95,7 @@ const Header: FC<any> = ({ logo, color, setColor }) => {
       open={isLanguagesMenuOpen}
       onClose={closeLanguagesMenu}
     >
-      {["ru", "gb"].filter(el => el !== language).map(el => (
+      {["gb", "ru", "ua", "de"].filter(el => el !== language).map(el => (
         <MenuItem onClick={() => {
           setLanguage(el);
           closeLanguagesMenu();
@@ -200,6 +200,8 @@ const Header: FC<any> = ({ logo, color, setColor }) => {
   //   </Menu>
   // );
 
+  const openWindow = (url: string): Window | null => window.open(url, "_blank");
+
   return (
     <div className="header-container">
       <AppBar position="static">
@@ -213,6 +215,16 @@ const Header: FC<any> = ({ logo, color, setColor }) => {
               alt="logo"
             />
           </div>
+          <Tooltip title="Contact the Developer">
+            <ButtonGroup>
+              <IconButton onClick={() => openWindow("mailto:user@example.com")}>
+                <AlternateEmail />
+              </IconButton>
+              <IconButton onClick={() => openWindow("https://t.me/Ant_tg")}>
+                <Telegram />
+              </IconButton>
+            </ButtonGroup>
+          </Tooltip>
           <Box sx={{ flexGrow: 1 }} />
           {[orange, indigo].filter(el => el !== color).map(el => (
             <IconButton onClick={() => setColor(el)}>

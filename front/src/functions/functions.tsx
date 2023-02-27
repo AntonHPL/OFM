@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ErrorInterface, GetAdsPropsInterface, ProfileContextInterface } from "../types";
+import { AdInterface, ErrorInterface, GetAdsPropsInterface, ProfileContextInterface } from "../types";
 import { useOutletContext } from "react-router-dom";
 
 export const getAds = ({
@@ -18,7 +18,7 @@ export const getAds = ({
 }: GetAdsPropsInterface) => {
   setAdsLoading(true);
   axios
-    .get("/api/ads", {
+    .get("/api/items", {
       params: {
         page,
         perPage: PER_PAGE,
@@ -30,8 +30,14 @@ export const getAds = ({
       }
     })
     .then(({ data }) => {
-      setAds(data.length ? data : null);
-      axios.get("/api/count_ads", {
+      const entries = (obj: object) => Object.entries(obj);
+
+      setAds(
+        data.length ? data.filter((el: AdInterface) =>
+          entries(el.textInfo).length > 0 &&
+          entries(el.textInfo).filter(([key, value]) => key !== "price").findIndex(([key, value]) => value === "") < 0) : null
+      );
+      axios.get("/api/count_items", {
         params: {
           subString: subString || undefined,
           categoryId: categoryId || undefined,
