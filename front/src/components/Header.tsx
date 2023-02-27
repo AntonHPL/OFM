@@ -10,7 +10,7 @@ import "/node_modules/flag-icons/css/flag-icons.min.css";
 import { useTranslation } from 'react-i18next';
 import '../i18n';
 // import { t, i18n } from "./translation";
-import { AlternateEmail, Lens, Telegram, WhatsApp } from "@mui/icons-material";
+import { AlternateEmail, Info, Lens, Telegram, WhatsApp } from "@mui/icons-material";
 import { orange, indigo } from "@mui/material/colors";
 
 const Header: FC<any> = ({ logo, color, setColor }) => {
@@ -224,6 +224,11 @@ const Header: FC<any> = ({ logo, color, setColor }) => {
                 <Telegram />
               </IconButton>
             </ButtonGroup>
+          </Tooltip>
+          <Tooltip title="That's a Desktop version. Mobile version's coming soon.">
+            <IconButton>
+              <Info />
+            </IconButton>
           </Tooltip>
           <Box sx={{ flexGrow: 1 }} />
           {[orange, indigo].filter(el => el !== color).map(el => (
