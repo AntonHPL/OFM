@@ -30,11 +30,11 @@ const menuSchema = new Schema({
       required: true,
     },
     ua: {
-      type: String,
+      type: Array,
       required: true,
     },
     de: {
-      type: String,
+      type: Array,
       required: true,
     },
   }

@@ -145,7 +145,7 @@ const Ads: FC = () => {
               return content;
             }() :
             ads?.map(ad => (
-              <AdCard ad={ad} />
+              <AdCard ad={ad} key={ad._id} />
             ))
           }
           {!ads &&

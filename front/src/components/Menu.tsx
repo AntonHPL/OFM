@@ -47,7 +47,6 @@ const Menu: FC<MenuPropsInterface> = ({ getAdsProps, setSubString, setCategoryId
         selected: false,
       };
     });
-    console.log(items)
     setListItems(items);
     setStableItems(items);
     setMenuLoading(false);
