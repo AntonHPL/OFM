@@ -217,7 +217,7 @@ const Header: FC<any> = ({ logo, color, setColor }) => {
           </div>
           <Tooltip title="Contact the Developer">
             <ButtonGroup>
-              <IconButton onClick={() => openWindow("mailto:user@example.com")}>
+              <IconButton onClick={() => openWindow("mailto:antosha.dashko@gmail.com")}>
                 <AlternateEmail />
               </IconButton>
               <IconButton onClick={() => openWindow("https://t.me/Ant_tg")}>
